@@ -1,0 +1,31 @@
+
+
+
+{
+    slug:   'dashboard-analytics',
+    title:  'Dashboard Analytics',
+    desc:   'Interface de reporting avec graphiques interactifs, filtres avancés et export PDF automatique.',
+    year:   '2024',
+    tags:   ['React','Python','REST API'],
+    color:  '#3B82F6',
+    github: null,
+    image:  null,
+    logos:  [
+      'https://cdn.simpleicons.org/react/61DAFB',
+      'https://cdn.simpleicons.org/python/3776AB',
+    ],
+  },
+  {
+    slug:   'api-rest',
+    title:  'API REST Enterprise',
+    desc:   'Backend sécurisé avec auth JWT, rate limiting, tests unitaires et documentation Swagger.',
+    year:   '2023',
+    tags:   ['Laravel','MySQL','JWT'],
+    color:  '#60A5FA',
+    github: null,
+    image:  null,
+    logos:  [
+      'https://cdn.simpleicons.org/laravel/FF2D20',
+      'https://cdn.simpleicons.org/mysql/4479A1',
+    ],
+  },
