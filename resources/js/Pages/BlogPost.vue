@@ -454,11 +454,9 @@ async function submitComment() {
 .aca-bio    { font-size: .78rem; color: var(--muted2); line-height: 1.65; }
 .aca-links  { display: flex; gap: .55rem; }
 .acal { display: inline-flex; align-items: center; gap: .35rem; font-size: .74rem; color: var(--muted2); text-decoration: none; border: 1px solid var(--card-b); padding: .28rem .75rem; border-radius: 6px; transition: color .2s, border-color .2s; }
-.acal:hover { color: var(--text); border-color: var(--red); }
 .acr-head  { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; }
 .acr-list  { display: flex; flex-direction: column; gap: .7rem; }
 .acrl-item { display: flex; flex-direction: column; gap: .25rem; text-decoration: none; padding: .75rem; border-radius: 10px; border: 1px solid transparent; transition: border-color .2s, background .2s; }
-.acrl-item:hover { border-color: var(--card-b); background: var(--card); }
 .acrl-cat   { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .08em; }
 .acrl-title { font-size: .82rem; font-weight: 700; color: var(--text); line-height: 1.3; }
 .acrl-time  { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--muted); }
@@ -467,25 +465,61 @@ async function submitComment() {
 .acct-t { font-size: .92rem; font-weight: 800; color: var(--text); }
 .acct-s { font-size: .78rem; color: var(--muted2); line-height: 1.6; }
 .acct-btn { display: flex; align-items: center; justify-content: center; width: 100%; background: var(--red); color: #fff; padding: .65rem 1rem; border-radius: 10px; font-weight: 700; font-size: .84rem; text-decoration: none; transition: opacity .2s, transform .2s; }
-.acct-btn:hover { opacity: .9; transform: translateY(-1px); }
 
 .fade-enter-active, .fade-leave-active { transition: opacity .3s, transform .3s; }
 .fade-enter-from { opacity: 0; transform: translateY(8px); }
 .fade-leave-to   { opacity: 0; }
 
+/* ══ HOVER : vrais pointeurs seulement ══ */
+@media (hover: hover) and (pointer: fine) {
+  .bphc-link:hover { color: var(--red); }
+  .bph-inner.has-image .bphc-link:hover { color: #fff !important; }
+  .toc-list a:hover { color: var(--red); }
+  .bpan-back:hover { color: var(--red); }
+  .acal:hover { color: var(--text); border-color: var(--red); }
+  .acrl-item:hover { border-color: var(--card-b); background: var(--card); }
+  .acct-btn:hover { opacity: .9; transform: translateY(-1px); }
+  .csf-submit:hover:not(:disabled) { transform: translateY(-2px); opacity: .9; }
+  .bpa-content :deep(tr:hover td) { background: var(--card); }
+}
+
+/* ══ RESPONSIVE ══ */
 @media (max-width: 900px) {
   .bpc-inner { grid-template-columns: 1fr; gap: 3rem; }
   .bpc-aside { position: static; }
+  .bpc-aside { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
 }
+
 @media (max-width: 680px) {
-  .bph-inner { padding: 7rem 4vw 3rem; }
-  .bpc { padding: 4rem 4vw 5rem; }
-  .bph-title { font-size: 1.9rem; }
+  .bph-inner { padding: 6.5rem 5vw 3rem; }
+  .bpc { padding: 4rem 5vw 5rem; }
+  .bph-title { font-size: clamp(1.7rem, 6vw, 2rem); }
+  .bph-lead  { font-size: .95rem; }
   .csf-row   { grid-template-columns: 1fr; }
+  .bpc-aside { grid-template-columns: 1fr; }
+  .bpa-toc   { padding: 1rem 1.2rem; }
+  .cs-form   { padding: 1.3rem; }
 }
+
 @media (max-width: 480px) {
-  .bph-title { font-size: 1.65rem; }
-  .bpa-content :deep(h2) { font-size: 1.3rem; }
-  .bpa-content :deep(table) { font-size: .78rem; display: block; overflow-x: auto; }
+  .bph-inner { padding: 5.5rem 4vw 2.5rem; }
+  .bpc { padding: 3rem 4vw 4rem; }
+  .bph-title { font-size: clamp(1.5rem, 7vw, 1.8rem); }
+  .bpa-content :deep(h2) { font-size: 1.25rem; }
+  .bpa-content :deep(h3) { font-size: 1rem; }
+  .bpa-content :deep(pre) { padding: 1rem 1.1rem; font-size: .78rem; }
+  .bpa-content :deep(table) { font-size: .78rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .bpa-content :deep(blockquote) { padding: .85rem 1rem; }
+  .cs-comment { gap: .65rem; }
+  .csc-avatar { width: 34px; height: 34px; font-size: .85rem; }
+  .csc-body { padding: .85rem 1rem; }
+  .csf-submit { width: 100%; justify-content: center; }
+  .aside-card { padding: 1.1rem; }
+}
+
+@media (max-width: 360px) {
+  .bph-meta { gap: .5rem; }
+  .bph-author { gap: .75rem; }
+  .bpha-avatar { width: 38px; height: 38px; }
 }
 </style>

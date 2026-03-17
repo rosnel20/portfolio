@@ -579,34 +579,24 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); document.body.
 .phs-counter { font-family: 'JetBrains Mono', monospace; font-size: .64rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 .phs-counter-sep { margin: 0 .15rem; opacity: .4; }
 
-/* Stage = zone image — contain pour voir toute l'image, fond stylé */
+/* Stage = zone image — cover centré top, fond neutre */
 .phs-stage {
   aspect-ratio: 16/9; min-height: 300px; overflow: hidden;
-  position: relative; display: flex; align-items: center; justify-content: center;
+  position: relative; display: flex; align-items: flex-start; justify-content: center;
   cursor: zoom-in;
-  background: #0d0d0d;
-  /* Fond quadrillage subtil pour habiller l'espace vide autour de l'image */
-  background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background: #e8e8e8;
 }
-.ppage.light .phs-stage {
-  background-color: #ebebeb;
-  background-image:
-    linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
+.ppage.dark .phs-stage {
+  background: #1c1c1c;
 }
 
 .phs-img {
-  /* L'image prend toute la largeur disponible, hauteur proportionnelle */
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;
+  object-position: top center;
   display: block;
-  /* Ombre pour donner de la profondeur */
-  filter: drop-shadow(0 4px 24px rgba(0,0,0,.4));
+  transition: transform .5s ease;
 }
 .phs-empty-hero { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
 .phs-letter { font-size: 9rem; font-weight: 900; opacity: .1; letter-spacing: -.06em; line-height: 1; }
@@ -633,6 +623,7 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); document.body.
   opacity: 0;
 }
 .phs-stage:hover .phs-nav { opacity: 1; }
+.phs-stage:hover .phs-img { transform: scale(1.03); transform-origin: top center; }
 .phs-nav.prev { left: .9rem; }
 .phs-nav.next { right: .9rem; }
 .phs-nav:hover { background: rgba(0,0,0,.78); scale: 1.08; }
@@ -739,30 +730,23 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); document.body.
   position: relative; aspect-ratio: 16/9; border-radius: 14px; overflow: hidden;
   border: 1px solid var(--card-b);
   cursor: zoom-in; margin-bottom: .8rem;
-  display: flex; align-items: center; justify-content: center;
-  background: #0d0d0d;
-  background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size: 24px 24px;
+  display: flex; align-items: flex-start; justify-content: center;
+  background: #e8e8e8;
 }
-.ppage.light .gm-stage {
-  background-color: #ebebeb;
-  background-image:
-    linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
+.ppage.dark .gm-stage {
+  background: #1c1c1c;
 }
 
 .gm-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;
+  object-position: top center;
   display: block;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,.35));
-  opacity: 0; transition: opacity .35s ease;
+  opacity: 0; transition: opacity .35s ease, transform .5s ease;
 }
 .gm-img.loaded { opacity: 1; }
+.gm-stage:hover .gm-img { transform: scale(1.03); transform-origin: top center; }
 
 /* Overlay hover */
 .gm-overlay {
@@ -819,17 +803,17 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); document.body.
   position: relative; aspect-ratio: 16/9; border-radius: 9px; overflow: hidden;
   border: 2px solid var(--card-b); cursor: pointer;
   transition: border-color .2s, box-shadow .2s, opacity .2s;
-  background: #0d0d0d;
-  display: flex; align-items: center; justify-content: center;
+  background: #e8e8e8;
+  display: flex; align-items: flex-start; justify-content: center;
 }
-.ppage.light .gt-item { background: #ebebeb; }
+.ppage.dark .gt-item { background: #1c1c1c; }
 .gt-item:not(.active) { opacity: .5; }
 .gt-item:not(.active):hover { opacity: .8; border-color: rgba(255,255,255,.2); }
 .gt-item.active { opacity: 1; }
 .gt-item img {
   width: 100%; height: 100%;
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;
+  object-position: top center;
   display: block;
   opacity: 0; transition: opacity .3s ease;
 }
@@ -984,22 +968,24 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); document.body.
 
 /* Mobile */
 @media (max-width: 600px) {
-  /* On supprime le ratio 16/9 fixe — la hauteur suit l'image */
+  /* Stage adapte sa hauteur à l'image, limité à 65vh */
   .phs-stage {
     aspect-ratio: auto;
     min-height: unset;
-    height: auto;
+    max-height: 65vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 0;
     align-items: flex-start;
+    scrollbar-width: none;
   }
+  .phs-stage::-webkit-scrollbar { display: none; }
 
-  /* L'image prend toute la largeur, hauteur naturelle → rien n'est coupé */
   .phs-img {
     width: 100%;
     height: auto;
-    max-height: none;
-    object-fit: fill;   /* affiche l'image telle quelle, pleine largeur */
-    filter: none;
+    object-fit: cover;
+    object-position: top center;
   }
 
   /* Barre browser plus compacte */
@@ -1007,29 +993,32 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); document.body.
   .phs-url { font-size: .62rem; max-width: 180px; }
   .phs-counter { font-size: .6rem; }
 
-  /* Masquer les dots browser en bas, utiliser les pills */
+  /* Pills */
   .phs-pills { padding: .5rem; gap: .4rem; }
   .phs-pill  { width: 5px; height: 5px; }
   .phs-pill.active { width: 16px; }
 
-  /* Flèches nav toujours visibles sur mobile (pas besoin de hover) */
+  /* Flèches nav toujours visibles sur mobile */
   .phs-nav  { opacity: 1; width: 32px; height: 32px; }
-  .phs-zoom { opacity: 1; }
+  .phs-zoom { display: none; }
 
-  /* Galerie tab */
+  /* Galerie tab — même traitement */
   .gm-stage {
     aspect-ratio: auto;
     min-height: unset;
-    height: auto;
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 0;
     align-items: flex-start;
+    scrollbar-width: none;
   }
+  .gm-stage::-webkit-scrollbar { display: none; }
   .gm-img {
     width: 100%;
     height: auto;
-    max-height: none;
-    object-fit: fill;
-    filter: none;
+    object-fit: cover;
+    object-position: top center;
   }
   .gm-nav { opacity: 1; width: 34px; height: 34px; }
 }
