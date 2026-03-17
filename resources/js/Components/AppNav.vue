@@ -13,7 +13,11 @@
             :href="'#' + l.id"
             @click.prevent="go(l.id)"
           >{{ l.label }}</a>
-          <Link v-else class="lnk" :href="l.href">{{ l.label }}</Link>
+          <Link
+            v-else
+            class="lnk" :class="{ active: isLinkActive(l.href) }"
+            :href="l.href"
+          >{{ l.label }}</Link>
         </li>
       </ul>
 
@@ -32,7 +36,7 @@
           </svg>
         </button>
 
-        <!-- CTA Contact → TOUJOURS /contact (sauf si déjà dessus) -->
+        <!-- CTA Contact (masqué si déjà sur /contact) -->
         <Link v-if="!onContact" class="cta" href="/contact">Contact</Link>
 
         <button class="burger" :class="{ x: menu }" @click="menu = !menu" aria-label="Menu">
@@ -86,25 +90,47 @@ const active   = ref('hero')
 const menu     = ref(false)
 
 const currentUrl = computed(() => page.url ?? window.location.pathname)
-const onHome     = computed(() => currentUrl.value === '/' || currentUrl.value === '' || currentUrl.value.startsWith('/#'))
-const onContact  = computed(() => currentUrl.value.startsWith('/contact'))
-const onProject  = computed(() => currentUrl.value.startsWith('/projets'))
+const onHome    = computed(() => currentUrl.value === '/' || currentUrl.value === '' || currentUrl.value.startsWith('/#'))
+const onContact = computed(() => currentUrl.value.startsWith('/contact'))
 
 /*
-  Home    → Accueil · À propos · Projets  (ancres smooth-scroll)
-  Projet  → ← Retour  (/)
-  Contact → ← Retour  (/)
+  Liens selon la page courante :
+  ─────────────────────────────────────────────────────
+  Home      → Accueil · À propos · Projets · Blog  (ancres + lien)
+  /blog/*   → ← Retour  +  les liens Home
+  /projets/ → ← Retour
+  /contact  → ← Retour
+  ─────────────────────────────────────────────────────
 */
 const homeLinks = [
   { label: 'Accueil',  id: 'hero',     anchor: true },
   { label: 'À propos', id: 'about',    anchor: true },
   { label: 'Projets',  id: 'projects', anchor: true },
+  { label: 'Blog',     id: 'blog',     anchor: false, href: '/blog' },
 ]
+
 const backLinks = [
   { label: '← Retour', id: 'back', href: '/', anchor: false },
 ]
 
-const visibleLinks = computed(() => onHome.value ? homeLinks : backLinks)
+/* Sur /blog : on garde les liens home + le retour est implicite via le logo */
+const blogLinks = [
+  { label: 'Accueil',  id: 'home',     anchor: false, href: '/' },
+  { label: 'Projets',  id: 'projects', anchor: false, href: '/#projects' },
+  { label: 'Blog',     id: 'blog',     anchor: false, href: '/blog' },
+]
+
+const visibleLinks = computed(() => {
+  const u = currentUrl.value
+  if (onHome.value)            return homeLinks
+  if (u.startsWith('/blog'))   return blogLinks
+  return backLinks
+})
+
+function isLinkActive(href) {
+  if (!href) return false
+  return currentUrl.value === href || currentUrl.value.startsWith(href + '/')
+}
 
 function go(id) {
   if (id === 'back') { window.history.back(); return }
@@ -136,21 +162,17 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   position: fixed; top: .85rem; left: 50%;
   transform: translateX(-50%);
   z-index: 400;
-  width: min(calc(100vw - 2rem), 920px);
+  width: min(calc(100vw - 2rem), 960px);
 }
 .pill {
   display: flex; align-items: center; justify-content: space-between;
   gap: .5rem; padding: .68rem .9rem .68rem 1.4rem;
-  background: var(--nav-bg);
-  border: 1px solid var(--nav-b);
+  background: var(--nav-bg); border: 1px solid var(--nav-b);
   border-radius: 100px;
   backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
   transition: box-shadow .35s, border-color .35s;
 }
-.nav.lifted .pill {
-  box-shadow: 0 8px 40px rgba(0,0,0,.32);
-  border-color: rgba(229,62,62,.22);
-}
+.nav.lifted .pill { box-shadow: 0 8px 40px rgba(0,0,0,.32); border-color: rgba(229,62,62,.22); }
 .logo { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1rem; color: var(--text); text-decoration: none; letter-spacing: -.04em; flex-shrink: 0; }
 .dot  { color: var(--red); }
 
@@ -169,8 +191,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   transform: translateX(-50%);
   width: 4px; height: 4px; border-radius: 50%; background: var(--red);
 }
-.end { display: flex; align-items: center; gap: .4rem; }
 
+.end { display: flex; align-items: center; gap: .4rem; }
 .icon-btn {
   width: 32px; height: 32px; border-radius: 50%;
   background: rgba(255,255,255,.06); border: 1px solid var(--nav-b);
@@ -179,7 +201,6 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   transition: color .2s, border-color .2s;
 }
 .icon-btn:hover { color: var(--text); border-color: var(--red); }
-
 .cta {
   padding: .38rem 1.1rem; border-radius: 100px;
   background: var(--red); color: #fff; text-decoration: none;
@@ -224,7 +245,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .mob-enter-from { opacity: 0; transform: translateY(-8px); }
 .mob-leave-to   { opacity: 0; transform: translateY(-8px); }
 
-@media (max-width: 680px) {
+@media (max-width: 720px) {
   .links { display: none; }
   .cta   { display: none; }
   .burger { display: flex; }
