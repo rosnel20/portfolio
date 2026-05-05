@@ -1,0 +1,30 @@
+/*
+ * reveal.css
+ * Styles d'animation scroll — à importer dans app.css ou dans chaque page.
+ *
+ * @import './reveal.css';  ← dans app.css après les directives Tailwind
+ */
+
+/* ── État initial (caché) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-left  { transform: translateX(-32px); }
+.reveal.reveal-right { transform: translateX(32px);  }
+.reveal.reveal-scale { transform: scale(0.94);       }
+
+/* ── État final (visible) ── */
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Désactive les animations si l'utilisateur préfère moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+}

@@ -2,6 +2,7 @@
   <div class="bppage" :class="theme">
     <AppNav :dark="theme==='dark'" @toggle-theme="toggleTheme" />
     <NProgress />
+    <AppCursor />
 
     <main>
       <!-- HERO -->
@@ -23,7 +24,7 @@
             <span class="bphc-sep">/</span>
             <span class="bphc-cur">{{ post.category }}</span>
           </div>
-          <div class="bph-meta">
+          <div class="bph-meta reveal" data-delay="0">
             <span class="bph-cat" :style="{ color: post.color, background: post.color+'22', borderColor: post.color+'44' }">
               {{ post.category }}
             </span>
@@ -33,9 +34,9 @@
               {{ post.readTime }} min de lecture
             </span>
           </div>
-          <h1 class="bph-title">{{ post.title }}</h1>
-          <p  class="bph-lead">{{ post.lead }}</p>
-          <div class="bph-author">
+          <h1 class="bph-title reveal" data-delay="80">{{ post.title }}</h1>
+          <p  class="bph-lead reveal" data-delay="140">{{ post.lead }}</p>
+          <div class="bph-author reveal" data-delay="200">
             <div class="bpha-avatar" :style="{ background: post.color }">R</div>
             <div>
               <div class="bpha-name">Rosnel Pacely</div>
@@ -49,7 +50,7 @@
       <div class="bpc">
         <div class="bpc-inner">
 
-          <article class="bpc-article">
+          <article class="bpc-article reveal" data-delay="0">
 
             <div v-if="post.toc && post.toc.length" class="bpa-toc">
               <div class="toc-label">
@@ -158,7 +159,7 @@
           </article>
 
           <!-- ASIDE -->
-          <aside class="bpc-aside">
+          <aside class="bpc-aside reveal" data-delay="120">
             <div class="aside-card ac-author">
               <div class="aca-avatar" :style="{ background: post.color }">R</div>
               <div class="aca-name">Rosnel Pacely</div>
@@ -207,6 +208,8 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import AppCursor from '../Components/AppCursor.vue'
+import { useScrollReveal } from '../Composables/useScrollReveal'
 import { Link } from '@inertiajs/vue3'
 import axios from 'axios'
 import AppNav    from '../Components/AppNav.vue'
@@ -221,6 +224,7 @@ const props = defineProps({
 })
 
 const { theme, toggleTheme } = useTheme()
+useScrollReveal()
 
 function scrollTo(id) {
   const el = document.getElementById(id)

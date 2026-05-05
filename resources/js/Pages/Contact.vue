@@ -2,6 +2,7 @@
   <div class="cpage" :class="theme">
     <AppNav :dark="theme==='dark'" @toggle-theme="toggleTheme" />
     <NProgress />
+    <AppCursor />
     <main>
       <!-- HERO -->
       <section class="ch">
@@ -22,9 +23,9 @@
             <span class="chc-sep">/</span>
             <span class="chc-cur">Contact</span>
           </div>
-          <div class="ch-badge"><span class="chb-dot"></span>Disponible · Réponse sous 24h</div>
-          <h1 class="ch-title">Démarrons un<br><em>projet ensemble</em></h1>
-          <p class="ch-sub">Mission freelance, CDI, collaboration ouverte —<br class="br-hide"> chaque projet est une nouvelle aventure.</p>
+          <div class="ch-badge reveal" data-delay="0"><span class="chb-dot"></span>Disponible · Réponse sous 24h</div>
+          <h1 class="ch-title reveal" data-delay="80">Démarrons un<br><em>projet ensemble</em></h1>
+          <p class="ch-sub reveal" data-delay="160">Mission freelance, CDI, collaboration ouverte —<br class="br-hide"> chaque projet est une nouvelle aventure.</p>
         </div>
         <div class="ch-scroll"><div class="chs-bar"></div><span>Scroll</span></div>
       </section>
@@ -35,7 +36,7 @@
           <!-- Gauche -->
           <div class="cbi-left">
             <div class="cil-label">01 · Coordonnées</div>
-            <div class="cil-cards">
+            <div class="cil-cards reveal" data-delay="0">
               <a href="mailto:mrrosnel6@gmail.com" class="cic email">
                 <div class="cic-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
                 <div class="cic-body"><div class="cic-label">Email</div><div class="cic-val">mrrosnel6@gmail.com</div></div>
@@ -52,7 +53,7 @@
                 <svg class="cic-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
             </div>
-            <div class="cil-dispo">
+            <div class="cil-dispo reveal" data-delay="100">
               <div class="cild-head"><span class="cild-dot"></span>Disponibilité</div>
               <div class="cild-status">Ouvert aux opportunités en <strong>2025</strong></div>
               <div class="cild-types">
@@ -74,7 +75,7 @@
               </div>
             </Transition>
 
-            <form v-if="!success" @submit.prevent="submit" novalidate class="cir-form">
+            <form v-if="!success" @submit.prevent="submit" novalidate class="cir-form reveal" data-delay="80">
               <div v-if="globalError" class="cf-alert">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 {{ globalError }}
@@ -124,6 +125,8 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import AppCursor from '../Components/AppCursor.vue'
+import { useScrollReveal } from '../Composables/useScrollReveal'
 import { Link, useForm, usePage } from '@inertiajs/vue3'
 import AppNav    from '../Components/AppNav.vue'
 import AppFooter from '../Components/AppFooter.vue'
@@ -131,6 +134,7 @@ import NProgress from '../Components/NProgress.vue'
 import { useTheme } from '../Composables/useTheme'
 
 const { theme, toggleTheme } = useTheme()
+useScrollReveal()
 
 const page        = usePage()
 const success     = ref(page.props.flash?.success === true)

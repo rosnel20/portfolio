@@ -2,6 +2,7 @@
   <div class="bpage" :class="theme">
     <AppNav :dark="theme==='dark'" @toggle-theme="toggleTheme" />
     <NProgress />
+    <AppCursor />
 
     <main>
       <!-- HERO -->
@@ -20,16 +21,16 @@
             <span class="bhc-sep">/</span>
             <span class="bhc-cur">Blog</span>
           </div>
-          <div class="bh-badge">
+          <div class="bh-badge reveal" data-delay="0">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             Articles techniques
           </div>
-          <h1 class="bh-title">Mes réflexions<br><em>techniques</em></h1>
-          <p class="bh-sub">
+          <h1 class="bh-title reveal" data-delay="80">Mes réflexions<br><em>techniques</em></h1>
+          <p class="bh-sub reveal" data-delay="160">
             Partage d'expériences, bonnes pratiques et solutions concrètes
             sur Laravel, Vue.js et le développement full-stack.
           </p>
-          <div class="bh-filters">
+          <div class="bh-filters reveal" data-delay="220">
             <button
               v-for="cat in categories" :key="cat"
               class="bhf" :class="{ active: activeCategory === cat }"
@@ -44,7 +45,7 @@
       <section class="bc">
         <div class="bc-inner">
 
-          <div v-if="filteredPosts.length" class="bc-featured">
+          <div v-if="filteredPosts.length" class="bc-featured reveal" data-delay="0">
             <Link :href="'/blog/' + filteredPosts[0].slug" class="bcf-card">
               <div class="bcf-visual" :style="{ background: `linear-gradient(135deg, ${filteredPosts[0].color}20, ${filteredPosts[0].color}06)` }">
                 <img
@@ -80,17 +81,18 @@
             </Link>
           </div>
 
-          <div v-if="filteredPosts.length > 1" class="bc-grid-label">
+          <div v-if="filteredPosts.length > 1" class="bc-grid-label reveal" data-delay="40">
             <span>Tous les articles</span>
             <span class="bcgl-count">{{ filteredPosts.length - 1 }} article{{ filteredPosts.length - 1 > 1 ? 's' : '' }}</span>
           </div>
 
           <div class="bc-grid">
             <Link
-              v-for="post in filteredPosts.slice(1)"
+              v-for="(post, idx) in filteredPosts.slice(1)"
               :key="post.slug"
               :href="'/blog/' + post.slug"
-              class="bc-card"
+              class="bc-card reveal"
+              :data-delay="idx * 80"
             >
               <div class="bcc-visual" :style="{ background: post.color+'12' }">
                 <img v-if="post.image" :src="post.image" :alt="post.title" class="bcc-img"/>
@@ -132,6 +134,8 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import AppCursor from '../Components/AppCursor.vue'
+import { useScrollReveal } from '../Composables/useScrollReveal'
 import { Link } from '@inertiajs/vue3'
 import AppNav    from '../Components/AppNav.vue'
 import AppFooter from '../Components/AppFooter.vue'
@@ -139,6 +143,7 @@ import NProgress from '../Components/NProgress.vue'
 import { useTheme } from '../Composables/useTheme'
 
 const { theme, toggleTheme } = useTheme()
+useScrollReveal()
 
 const posts = [
   {

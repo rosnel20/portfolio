@@ -2,6 +2,7 @@
   <div class="ppage" :class="theme">
     <AppNav :dark="theme==='dark'" @toggle-theme="toggleTheme" />
     <NProgress />
+    <AppCursor />
 
     <main>
       <!-- ══════════════════ HERO ══════════════════ -->
@@ -22,7 +23,7 @@
             <span class="pc-cur">{{ project.title }}</span>
           </div>
 
-          <div class="ph-tags">
+          <div class="ph-tags reveal" data-delay="0">
             <span v-for="t in project.tags" :key="t" class="pht"
               :style="{ color: project.color, background: project.color+'14', borderColor: project.color+'30' }">
               {{ t }}
@@ -30,10 +31,10 @@
             <span class="ph-yr">{{ project.year }}</span>
           </div>
 
-          <h1 class="ph-title">{{ project.title }}</h1>
-          <p  class="ph-sub">{{ project.tagline }}</p>
+          <h1 class="ph-title reveal" data-delay="80">{{ project.title }}</h1>
+          <p  class="ph-sub reveal" data-delay="140">{{ project.tagline }}</p>
 
-          <div class="ph-btns">
+          <div class="ph-btns reveal" data-delay="200">
             <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener"
                class="phb-main" :style="{ background: project.color }">
               Voir en ligne
@@ -134,7 +135,7 @@
         <div class="pb-inner">
 
           <!-- Onglets -->
-          <div class="tabs">
+          <div class="tabs reveal" data-delay="0">
             <button
               v-for="tab in allTabs" :key="tab.id"
               class="tab" :class="{ active: activeTab === tab.id }"
@@ -148,7 +149,7 @@
 
           <!-- ── Tab : Présentation ── -->
           <div v-if="activeTab === 'desc'" class="tc-desc">
-            <div class="tcd-main">
+            <div class="tcd-main reveal" data-delay="60">
               <div class="blk-label">Le projet</div>
               <div class="blk-text" v-html="project.description"></div>
 
@@ -165,7 +166,7 @@
               </div>
             </div>
 
-            <aside class="tcd-aside">
+            <aside class="tcd-aside reveal" data-delay="120">
               <div class="aside-card">
                 <div class="ac-head">Stack technique</div>
                 <div class="ac-stack">
@@ -385,6 +386,8 @@
 
 <script setup>
 import { ref, computed, reactive, onMounted, onUnmounted } from 'vue'
+import AppCursor from '../Components/AppCursor.vue'
+import { useScrollReveal } from '../Composables/useScrollReveal'
 import { Link } from '@inertiajs/vue3'
 import AppNav    from '../Components/AppNav.vue'
 import AppFooter from '../Components/AppFooter.vue'
@@ -395,6 +398,7 @@ const props = defineProps({ project: Object, otherProjects: Array })
 
 /* ── Thème ── */
 const { theme, toggleTheme } = useTheme()
+useScrollReveal()
 
 /* ── Screenshots raccourci ── */
 const screenshots = computed(() => props.project.screenshots ?? [])

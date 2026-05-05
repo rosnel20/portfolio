@@ -2,6 +2,7 @@
   <div class="site" :class="theme">
     <AppNav :dark="theme==='dark'" @toggle-theme="toggleTheme" />
     <NProgress />
+    <AppCursor />
 
     <main>
       <!-- ══════════════ HERO ══════════════ -->
@@ -13,35 +14,36 @@
         </div>
         <div class="h-inner">
           <div class="h-left">
-            <div class="avail-bar">
+            <div class="avail-bar reveal" data-delay="0">
               <span class="av-dot"></span>
               <span>Disponible · Cameroun · <strong>2026</strong></span>
             </div>
-            <h1 class="h1">
+            <h1 class="h1 reveal" data-delay="80">
               <span class="h1-sm">Mabong Anaba</span>
               <span class="h1-lg">Rosnel<br>Pacely</span>
             </h1>
-            <div class="role">
+            <div class="role reveal" data-delay="140">
               <span class="rbar"></span>
               Ingénieur Informaticien · Full-Stack Developer
             </div>
-            <p class="hdesc">
+            <p class="hdesc reveal" data-delay="200">
               Je conçois des systèmes web robustes, des interfaces qui marquent
               les esprits et des APIs qui tiennent la charge.
               Code propre · Architecture réfléchie · Livraison rapide.
             </p>
-            <div class="hbtns">
+            <div class="hbtns reveal" data-delay="260">
               <a href="#projects" class="btn-red" @click.prevent="go('projects')">
                 Voir mes projets
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
               <Link href="/contact" class="btn-outline">Contactez-moi</Link>
-              <a href="/cv-rosnel-pacely.pdf" download class="btn-cv">
+              <!-- Bouton Mon CV → ouvre le modal CVModal -->
+              <button class="btn-cv" @click="showCV = true">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Mon CV
-              </a>
+              </button>
             </div>
-            <div class="stats" ref="statsRef">
+            <div class="stats reveal" ref="statsRef" data-delay="340">
               <div class="st">
                 <span class="st-n">{{ counters.projects }}<span class="st-plus">+</span></span>
                 <span class="st-l">Projets</span>
@@ -85,22 +87,22 @@
       <section id="about" class="about">
         <div class="a-inner">
           <div class="a-left">
-            <div class="sec-label">01 · À propos</div>
-            <h2 class="sec-h2">L'ingénieur<br><em>derrière le code</em></h2>
-            <p>Ingénieur Informaticien diplômé de l'IAI (Institut Africain d'Informatique), je me suis spécialisé dans le développement full-stack Laravel avec un focus sur la performance, la maintenabilité et l'expérience utilisateur.</p>
-            <p>Mon approche : architecture d'abord, implémentation ensuite. Chaque projet que je livre est pensé pour durer et évoluer facilement.</p>
-            <div class="chips">
+            <div class="sec-label reveal">01 · À propos</div>
+            <h2 class="sec-h2 reveal" data-delay="60">L'ingénieur<br><em>derrière le code</em></h2>
+            <p class="reveal" data-delay="120">Ingénieur Informaticien diplômé de l'IAI (Institut Africain d'Informatique), je me suis spécialisé dans le développement full-stack Laravel avec un focus sur la performance, la maintenabilité et l'expérience utilisateur.</p>
+            <p class="reveal" data-delay="180">Mon approche : architecture d'abord, implémentation ensuite. Chaque projet que je livre est pensé pour durer et évoluer facilement.</p>
+            <div class="chips reveal" data-delay="240">
               <span v-for="c in chips" :key="c">{{ c }}</span>
             </div>
-            <a href="/cv-rosnel-pacely.pdf" download class="about-cv">
+            <a href="/cv-rosnel-pacely.pdf" download class="about-cv reveal" data-delay="300">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Télécharger mon CV
             </a>
           </div>
           <div class="a-right">
-            <div class="sk-head">Compétences</div>
+            <div class="sk-head reveal">Compétences</div>
             <div class="sk-list">
-              <div v-for="s in skills" :key="s.name" class="sk-row">
+              <div v-for="(s, idx) in skills" :key="s.name" class="sk-row reveal" :data-delay="idx * 60">
                 <div class="skr-top">
                   <div class="skr-ico" :style="{ color:s.color, background:s.color+'16' }">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" v-html="s.svg"></svg>
@@ -130,8 +132,8 @@
       <section id="timeline" class="timeline-sec">
         <div class="tl-inner">
           <div class="tl-head">
-            <div class="sec-label">02 · Parcours</div>
-            <h2 class="sec-h2">Formations &<br><em>expériences</em></h2>
+            <div class="sec-label reveal">02 · Parcours</div>
+            <h2 class="sec-h2 reveal" data-delay="60">Formations &<br><em>expériences</em></h2>
           </div>
           <div class="tl-track">
             <div v-for="(item, i) in timeline" :key="i" class="tl-item">
@@ -141,7 +143,7 @@
                 </div>
                 <div class="tl-line" v-if="i < timeline.length - 1"></div>
               </div>
-              <div class="tl-card">
+              <div class="tl-card reveal" :data-delay="i * 80">
                 <div class="tlc-meta">
                   <span class="tlc-year" :style="{ color: item.color }">{{ item.year }}</span>
                   <span class="tlc-badge" :style="{ color: item.color, background: item.color+'16', borderColor: item.color+'30' }">
@@ -167,11 +169,11 @@
       <section id="projects" class="projects">
         <div class="p-inner">
           <div class="p-head">
-            <div class="sec-label">03 · Projets</div>
-            <h2 class="sec-h2">Ce que j'ai<br><em>construit</em></h2>
+            <div class="sec-label reveal">03 · Projets</div>
+            <h2 class="sec-h2 reveal" data-delay="60">Ce que j'ai<br><em>construit</em></h2>
           </div>
           <div class="p-grid">
-            <article v-for="(p,i) in projects" :key="p.slug" class="pc" :style="{ '--c': p.color }">
+            <article v-for="(p,i) in projects" :key="p.slug" class="pc reveal" :style="{ '--c': p.color }" :data-delay="i * 100">
               <Link :href="'/projets/'+p.slug" class="pc-visual">
                 <img v-if="p.image" :src="p.image" :alt="p.title" class="pc-img"/>
                 <div v-else class="pc-visual-ph">
@@ -208,7 +210,7 @@
       <!-- ══════════════ CONTACT ══════════════ -->
       <section id="contact" class="contact">
         <div class="c-bg"></div>
-        <div class="c-inner">
+        <div class="c-inner reveal">
           <div class="sec-label light">04 · Contact</div>
           <h2 class="c-h2">Démarrons un<br><em>projet ensemble</em></h2>
           <p class="c-p">Mission freelance, CDI, collaboration — écrivez-moi, je réponds sous 24h.</p>
@@ -236,6 +238,9 @@
 
       <AppFooter />
     </main>
+
+    <!-- ══ MODAL CV ══ -->
+    <CVModal v-model="showCV" />
   </div>
 </template>
 
@@ -245,14 +250,23 @@ import { Link } from '@inertiajs/vue3'
 import AppNav    from '../Components/AppNav.vue'
 import AppFooter from '../Components/AppFooter.vue'
 import NProgress from '../Components/NProgress.vue'
-import { useTheme } from '../Composables/useTheme'
+import AppCursor from '../Components/AppCursor.vue'
+import CVModal   from '../Components/CVModal.vue'
+import { useTheme }        from '../Composables/useTheme'
+import { useScrollReveal } from '../Composables/useScrollReveal'
 
 const { theme, toggleTheme } = useTheme()
+useScrollReveal()
+
 function go(id) {
   const el = document.getElementById(id)
   if (el) window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' })
 }
 
+/* ── Modal CV ── */
+const showCV = ref(false)
+
+/* ── Photo profil ── */
 const showPhoto = ref(true)
 const photoUrl  = '/images/profil.jpg'
 
@@ -278,15 +292,15 @@ function animateCounters() {
   requestAnimationFrame(step)
 }
 
-let observer
+let statsObserver
 onMounted(() => {
-  observer = new IntersectionObserver(
+  statsObserver = new IntersectionObserver(
     ([e]) => { if (e.isIntersecting) animateCounters() },
     { threshold: 0.3 }
   )
-  if (statsRef.value) observer.observe(statsRef.value)
+  if (statsRef.value) statsObserver.observe(statsRef.value)
 })
-onUnmounted(() => observer?.disconnect())
+onUnmounted(() => statsObserver?.disconnect())
 
 /* ── Data ── */
 const chips = ['Laravel', 'Vue.js', 'React', 'MySQL', 'Python', 'Tailwind', 'Bootstrap', 'Git']
@@ -324,7 +338,7 @@ const timeline = [
     type:  'edu',
     color: '#E53E3E',
     title: "Diplôme d'Ingénieur Informaticien",
-    org:   'IAI — Institut Africain d\'Informatique · Cameroun',
+    org:   "IAI — Institut Africain d'Informatique · Cameroun",
     desc:  "Diplôme d'ingénieur en informatique, spécialité développement logiciel et systèmes d'information. Formation orientée architecture, bases de données avancées et gestion de projets.",
     tags:  ['Génie Logiciel', 'Architecture SI', 'Bases de données', 'Gestion de projet'],
     icon:  '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
@@ -344,7 +358,7 @@ const timeline = [
     type:  'edu',
     color: '#3B82F6',
     title: 'DTS Informatique',
-    org:   'IAI — Institut Africain d\'Informatique · Cameroun',
+    org:   "IAI — Institut Africain d'Informatique · Cameroun",
     desc:  "Diplôme de Technicien Supérieur en informatique. Formation aux fondamentaux du développement logiciel, algorithmique, programmation orientée objet, développement web et administration de bases de données.",
     tags:  ['HTML/CSS', 'PHP', 'JavaScript', 'MySQL', 'Java', 'POO'],
     icon:  '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
@@ -439,7 +453,14 @@ const projects = [
 .hbtns { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; margin-bottom: 2.8rem; }
 .btn-red { display: inline-flex; align-items: center; gap: .5rem; background: var(--red); color: #fff; padding: .82rem 1.7rem; border-radius: 10px; font-weight: 700; font-size: .88rem; text-decoration: none; cursor: pointer; box-shadow: 0 6px 24px rgba(229,62,62,.28); transition: transform .2s, opacity .2s; }
 .btn-outline { display: inline-flex; align-items: center; background: transparent; color: var(--text); border: 1px solid var(--card-b); padding: .82rem 1.7rem; border-radius: 10px; font-size: .88rem; text-decoration: none; transition: border-color .2s, background .2s; }
-.btn-cv { display: inline-flex; align-items: center; gap: .45rem; background: var(--card); border: 1px solid var(--card-b); color: var(--text); padding: .82rem 1.2rem; border-radius: 10px; font-size: .84rem; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s, color .2s; }
+.btn-cv {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: var(--card); border: 1px solid var(--card-b);
+  color: var(--text); padding: .82rem 1.2rem; border-radius: 10px;
+  font-size: .84rem; font-weight: 600; font-family: 'Outfit', sans-serif;
+  cursor: pointer; text-decoration: none;
+  transition: border-color .2s, background .2s, color .2s;
+}
 
 /* Compteurs */
 .stats { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }

@@ -4,18 +4,20 @@
 
       <Link href="/" class="logo">rosnel<span class="dot">.</span>dev</Link>
 
-      <!-- Desktop links -->
+      <!-- Desktop links — toujours les mêmes 4 liens -->
       <ul class="links">
-        <li v-for="l in visibleLinks" :key="l.id">
+        <li v-for="l in links" :key="l.id">
+          <!-- Ancre (sur Home uniquement) -->
           <a
-            v-if="l.anchor"
+            v-if="l.anchor && onHome"
             class="lnk" :class="{ active: active === l.id }"
             :href="'#' + l.id"
             @click.prevent="go(l.id)"
           >{{ l.label }}</a>
+          <!-- Lien normal (toutes les autres pages) -->
           <Link
             v-else
-            class="lnk" :class="{ active: isLinkActive(l.href) }"
+            class="lnk" :class="{ active: isActive(l) }"
             :href="l.href"
           >{{ l.label }}</Link>
         </li>
@@ -48,18 +50,18 @@
     <!-- Menu mobile -->
     <Transition name="mob">
       <div v-if="menu" class="mobile">
-        <template v-for="l in visibleLinks" :key="l.id">
+        <template v-for="(l, idx) in links" :key="l.id">
           <a
-            v-if="l.anchor"
+            v-if="l.anchor && onHome"
             class="mob-lnk"
             :href="'#' + l.id"
             @click.prevent="go(l.id); menu = false"
           >
-            <span class="mob-n">{{ String(visibleLinks.indexOf(l) + 1).padStart(2, '0') }}</span>
+            <span class="mob-n">{{ String(idx + 1).padStart(2, '0') }}</span>
             {{ l.label }}
           </a>
           <Link v-else :href="l.href" class="mob-lnk" @click="menu = false">
-            <span class="mob-n">{{ String(visibleLinks.indexOf(l) + 1).padStart(2, '0') }}</span>
+            <span class="mob-n">{{ String(idx + 1).padStart(2, '0') }}</span>
             {{ l.label }}
           </Link>
         </template>
@@ -86,54 +88,36 @@ defineEmits(['toggle-theme'])
 
 const page     = usePage()
 const scrolled = ref(false)
-const active   = ref('hero')
+const active   = ref('hero')  // section active sur Home (scroll spy)
 const menu     = ref(false)
 
 const currentUrl = computed(() => page.url ?? window.location.pathname)
-const onHome    = computed(() => currentUrl.value === '/' || currentUrl.value === '' || currentUrl.value.startsWith('/#'))
-const onContact = computed(() => currentUrl.value.startsWith('/contact'))
+const onHome     = computed(() => currentUrl.value === '/' || currentUrl.value === '' || currentUrl.value.startsWith('/#'))
+const onContact  = computed(() => currentUrl.value.startsWith('/contact'))
 
-/*
-  Liens selon la page courante :
-  ─────────────────────────────────────────────────────
-  Home      → Accueil · À propos · Projets · Blog  (ancres + lien)
-  /blog/*   → ← Retour  +  les liens Home
-  /projets/ → ← Retour
-  /contact  → ← Retour
-  ─────────────────────────────────────────────────────
-*/
-const homeLinks = [
-  { label: 'Accueil',  id: 'hero',     anchor: true },
-  { label: 'À propos', id: 'about',    anchor: true },
-  { label: 'Projets',  id: 'projects', anchor: true },
-  { label: 'Blog',     id: 'blog',     anchor: false, href: '/blog' },
+/* ── Les 4 liens toujours présents ── */
+const links = [
+  { label: 'Accueil',  id: 'hero',     anchor: true,  href: '/'        },
+  { label: 'À propos', id: 'about',    anchor: true,  href: '/#about'  },
+  { label: 'Projets',  id: 'projects', anchor: true,  href: '/#projects' },
+  { label: 'Blog',     id: 'blog',     anchor: false, href: '/blog'    },
 ]
 
-const backLinks = [
-  { label: '← Retour', id: 'back', href: '/', anchor: false },
-]
-
-/* Sur /blog : on garde les liens home + le retour est implicite via le logo */
-const blogLinks = [
-  { label: 'Accueil',  id: 'home',     anchor: false, href: '/' },
-  { label: 'Projets',  id: 'projects', anchor: false, href: '/#projects' },
-  { label: 'Blog',     id: 'blog',     anchor: false, href: '/blog' },
-]
-
-const visibleLinks = computed(() => {
+/* Détermine si un lien est actif selon la page courante */
+function isActive(l) {
   const u = currentUrl.value
-  if (onHome.value)            return homeLinks
-  if (u.startsWith('/blog'))   return blogLinks
-  return backLinks
-})
-
-function isLinkActive(href) {
-  if (!href) return false
-  return currentUrl.value === href || currentUrl.value.startsWith(href + '/')
+  // Sur Home : géré par le scroll spy (active ref)
+  if (onHome.value && l.anchor) return active.value === l.id
+  // Blog
+  if (l.id === 'blog') return u.startsWith('/blog')
+  // Accueil quand on n'est pas sur Home
+  if (l.id === 'hero') return onHome.value
+  // Projets : /projets/*
+  if (l.id === 'projects') return u.startsWith('/projets')
+  return false
 }
 
 function go(id) {
-  if (id === 'back') { window.history.back(); return }
   const el = document.getElementById(id)
   if (el) {
     window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' })
@@ -145,6 +129,7 @@ function go(id) {
 function onScroll() {
   scrolled.value = window.scrollY > 50
   if (!onHome.value) return
+  // Scroll spy : détecte la section visible
   for (const id of ['contact', 'projects', 'about', 'hero']) {
     const el = document.getElementById(id)
     if (el && window.scrollY >= el.offsetTop - 130) {
