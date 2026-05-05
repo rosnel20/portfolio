@@ -36,10 +36,10 @@
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
               <Link href="/contact" class="btn-outline">Contactez-moi</Link>
-              <a href="/cv-rosnel-pacely.pdf" download class="btn-cv">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Mon CV
-              </a>
+              <button class="btn-cv" @click="cvOpen = true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Voir mon CV
+              </button>
             </div>
             <div class="stats" ref="statsRef">
               <div class="st">
@@ -92,10 +92,10 @@
             <div class="chips">
               <span v-for="c in chips" :key="c">{{ c }}</span>
             </div>
-            <a href="/cv-rosnel-pacely.pdf" download class="about-cv">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Télécharger mon CV
-            </a>
+            <button class="about-cv" @click="cvOpen = true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Voir & télécharger mon CV
+            </button>
           </div>
           <div class="a-right">
             <div class="sk-head">Compétences</div>
@@ -236,6 +236,9 @@
 
       <AppFooter />
     </main>
+
+    <!-- ══ CV MODAL ══ -->
+    <CVModal v-model="cvOpen" />
   </div>
 </template>
 
@@ -245,6 +248,7 @@ import { Link } from '@inertiajs/vue3'
 import AppNav    from '../Components/AppNav.vue'
 import AppFooter from '../Components/AppFooter.vue'
 import NProgress from '../Components/NProgress.vue'
+import CVModal   from '../Components/CVModal.vue'
 
 const theme = ref(localStorage.getItem('theme') || 'dark')
 function toggleTheme() {
@@ -255,6 +259,9 @@ function go(id) {
   const el = document.getElementById(id)
   if (el) window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' })
 }
+
+/* ── CV Modal ── */
+const cvOpen = ref(false)
 
 const showPhoto = ref(true)
 const photoUrl  = '/images/profil.jpg'
@@ -442,8 +449,8 @@ const projects = [
 .hbtns { display: flex; align-items: center; gap: .85rem; flex-wrap: wrap; margin-bottom: 2.8rem; }
 .btn-red { display: inline-flex; align-items: center; gap: .5rem; background: var(--red); color: #fff; padding: .82rem 1.7rem; border-radius: 10px; font-weight: 700; font-size: .88rem; text-decoration: none; cursor: pointer; box-shadow: 0 6px 24px rgba(229,62,62,.28); transition: transform .2s, opacity .2s; }
 .btn-outline { display: inline-flex; align-items: center; background: transparent; color: var(--text); border: 1px solid var(--card-b); padding: .82rem 1.7rem; border-radius: 10px; font-size: .88rem; text-decoration: none; transition: border-color .2s, background .2s; }
-.btn-cv { display: inline-flex; align-items: center; gap: .45rem; background: var(--card); border: 1px solid var(--card-b); color: var(--text); padding: .82rem 1.2rem; border-radius: 10px; font-size: .84rem; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s, color .2s; }
-
+.btn-cv { display: inline-flex; align-items: center; gap: .45rem; background: var(--card); border: 1px solid var(--card-b); color: var(--text); padding: .82rem 1.2rem; border-radius: 10px; font-size: .84rem; font-weight: 600; text-decoration: none; cursor: pointer; font-family: inherit; transition: border-color .2s, background .2s, color .2s; }
+.about-cv { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 700; color: var(--red); border: 1px solid rgba(229,62,62,.25); background: var(--red-soft); padding: .5rem 1.1rem; border-radius: 8px; text-decoration: none; cursor: pointer; font-family: inherit; transition: background .2s, border-color .2s; }
 /* Compteurs */
 .stats { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
 .st-n  { display: block; font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 900; letter-spacing: -.04em; color: var(--text); line-height: 1; }
@@ -474,7 +481,6 @@ const projects = [
 .a-left p { font-size: .92rem; color: var(--muted2); line-height: 1.9; margin-bottom: 1rem; }
 .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.5rem; margin-bottom: 1.5rem; }
 .chips span { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--red); background: var(--red-soft); border: 1px solid rgba(229,62,62,.15); padding: .2rem .68rem; border-radius: 5px; }
-.about-cv { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 700; color: var(--red); border: 1px solid rgba(229,62,62,.25); background: var(--red-soft); padding: .5rem 1.1rem; border-radius: 8px; text-decoration: none; transition: background .2s, border-color .2s; }
 .sk-head { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--muted); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 1.2rem; }
 .sk-list { display: flex; flex-direction: column; gap: .8rem; }
 .skr-top { display: flex; align-items: center; gap: .6rem; margin-bottom: .4rem; }
