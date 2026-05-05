@@ -438,7 +438,7 @@ body{font-family:'Segoe UI',sans-serif;background:#0A0A0A;color:#F0F0F0;margin:0
 .v{font-size:.9rem;color:#F0F0F0;}.m{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:12px;line-height:1.7;font-size:.88rem;color:#ccc;}
 .f{border-top:1px solid #1a1a1a;padding:12px 28px;font-size:.72rem;color:#555;}a{color:#E53E3E;}
 </style></head><body><div class="w">
-<div class="h"><h1>📬 Nouveau message · rosnel.dev</h1></div>
+<div class="h"><h1> Nouveau message · rosnel.dev</h1></div>
 <div class="b">
 <div class="r"><div class="l">Nom</div><div class="v">{$n}</div></div>
 <div class="r"><div class="l">Email</div><div class="v"><a href="mailto:{$e}">{$e}</a></div></div>

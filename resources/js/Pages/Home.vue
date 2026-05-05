@@ -256,8 +256,8 @@ function go(id) {
   if (el) window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' })
 }
 
-const showPhoto = ref(false)
-const photoUrl  = '/images/photo.jpg'
+const showPhoto = ref(true)
+const photoUrl  = '/images/profil.jpg'
 
 /* ── Compteurs animés ── */
 const statsRef = ref(null)
