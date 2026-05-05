@@ -212,6 +212,7 @@ import axios from 'axios'
 import AppNav    from '../Components/AppNav.vue'
 import AppFooter from '../Components/AppFooter.vue'
 import NProgress from '../Components/NProgress.vue'
+import { useTheme } from '../Composables/useTheme'
 
 const props = defineProps({
   post:         { type: Object, required: true },
@@ -219,11 +220,7 @@ const props = defineProps({
   comments:     { type: Array,  default: () => [] },
 })
 
-const theme = ref(localStorage.getItem('theme') || 'dark')
-function toggleTheme() {
-  theme.value = theme.value === 'dark' ? 'light' : 'dark'
-  localStorage.setItem('theme', theme.value)
-}
+const { theme, toggleTheme } = useTheme()
 
 function scrollTo(id) {
   const el = document.getElementById(id)

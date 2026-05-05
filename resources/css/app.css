@@ -9,3 +9,54 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* ─────────────────────────────────────────
+   Reset de base
+───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─────────────────────────────────────────
+   Fond global — élimine le blanc partout
+   y compris sous le footer et autour du
+   wrapper Inertia (#app)
+───────────────────────────────────────── */
+html {
+  color-scheme: dark;  /* évite le flash blanc au 1er rendu */
+}
+html.light {
+  color-scheme: light;
+}
+
+html, body, #app {
+  min-height: 100%;
+  background-color: #0A0A0A;  /* dark par défaut → même que --bg du .site.dark / .cpage.dark */
+  color: #F0F0F0;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+html.light,
+html.light body,
+html.light #app {
+  background-color: #F8F8F8;  /* même que --bg du .site.light / .cpage.light */
+  color: #0A0A0A;
+}
+
+/* ─────────────────────────────────────────
+   Scrollbar discrète (Webkit)
+───────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(229, 62, 62, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(229, 62, 62, 0.55); }
+
+/* ─────────────────────────────────────────
+   Sélection de texte
+───────────────────────────────────────── */
+::selection {
+  background: rgba(229, 62, 62, 0.25);
+  color: inherit;
+}

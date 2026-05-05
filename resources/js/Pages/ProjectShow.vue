@@ -389,15 +389,12 @@ import { Link } from '@inertiajs/vue3'
 import AppNav    from '../Components/AppNav.vue'
 import AppFooter from '../Components/AppFooter.vue'
 import NProgress from '../Components/NProgress.vue'
+import { useTheme } from '../Composables/useTheme'
 
 const props = defineProps({ project: Object, otherProjects: Array })
 
 /* ── Thème ── */
-const theme = ref(localStorage.getItem('theme') || 'dark')
-function toggleTheme() {
-  theme.value = theme.value === 'dark' ? 'light' : 'dark'
-  localStorage.setItem('theme', theme.value)
-}
+const { theme, toggleTheme } = useTheme()
 
 /* ── Screenshots raccourci ── */
 const screenshots = computed(() => props.project.screenshots ?? [])
