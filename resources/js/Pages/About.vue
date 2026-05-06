@@ -14,39 +14,39 @@
         </div>
         <div class="ah-inner">
           <div class="ah-left reveal">
-            <div class="sec-label">About me</div>
+            <div class="sec-label">À propos</div>
             <h1 class="ah-h1">
-              Engineer by<br>
-              training, builder<br>
-              <em>by vocation</em>
+              Ingénieur de<br>
+              formation, bâtisseur<br>
+              <em>par vocation</em>
             </h1>
             <p class="ah-lead">
-              I'm <strong>Rosnel Pacely</strong>, a Full-Stack Engineer based in Yaoundé, Cameroon.
-              I design and build web systems that are robust, maintainable and built to scale —
-              for clients in Africa and worldwide.
+              Je suis <strong>Rosnel Pacely</strong>, ingénieur Full-Stack basé à Yaoundé, Cameroun.
+              Je conçois et développe des systèmes web robustes, maintenables et scalables —
+              pour des clients en Afrique et dans le monde entier.
             </p>
             <div class="ah-badges reveal" data-delay="120">
               <span class="badge-item">
                 <span class="bi-dot green"></span>
-                Available · Remote · 2026
+                Disponible · Remote · 2026
               </span>
               <span class="badge-item">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Yaoundé, Cameroon (UTC+1)
+                Yaoundé, Cameroun (UTC+1)
               </span>
               <span class="badge-item">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                Open to worldwide opportunities
+                Ouvert aux opportunités mondiales
               </span>
             </div>
             <div class="ah-ctas reveal" data-delay="180">
               <Link href="/contact" class="btn-red">
-                Contact me
+                Me contacter
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </Link>
               <a href="/cv-rosnel-pacely.pdf" download class="btn-outline">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download CV / Resume
+                Télécharger le CV
               </a>
             </div>
           </div>
@@ -63,7 +63,7 @@
               </div>
               <div class="pf-badge">
                 <span class="pb-dot"></span>
-                Full-Stack Engineer
+                Ingénieur Full-Stack
               </div>
             </div>
             <!-- Stats rapides -->
@@ -81,28 +81,28 @@
       <section class="story-section">
         <div class="st-inner">
           <div class="st-label-col">
-            <div class="sec-label reveal">01 · My story</div>
+            <div class="sec-label reveal">01 · Mon histoire</div>
           </div>
           <div class="st-content">
-            <h2 class="sec-h2 reveal">From Cameroon<br><em>to the world</em></h2>
+            <h2 class="sec-h2 reveal">Du Cameroun<br><em>au monde entier</em></h2>
             <div class="st-body">
               <p class="reveal" data-delay="60">
-                I started coding during my DTS studies at <strong>IAI</strong> (Institut Africain d'Informatique, Yaoundé),
-                where I discovered the power of building systems that solve real problems.
-                What began as academic curiosity quickly turned into a professional vocation.
+                J'ai commencé à coder pendant mes études de DTS à l'<strong>IAI</strong> (Institut Africain d'Informatique, Yaoundé),
+                où j'ai découvert la puissance de construire des systèmes qui résolvent de vrais problèmes.
+                Ce qui a commencé comme une curiosité académique est vite devenu une vocation professionnelle.
               </p>
               <p class="reveal" data-delay="120">
-                After graduating with my <strong>Computer Science Engineering degree</strong> in 2025,
-                I deepened my expertise through an intensive full-stack training program at
-                <strong>Mercy Innovation Lab</strong>, focusing exclusively on the Laravel ecosystem —
-                from API design to deployment, from database modeling to Vue.js frontend architecture.
+                Après avoir obtenu mon <strong>diplôme d'ingénieur en informatique</strong> en 2025,
+                j'ai approfondi mon expertise grâce à une formation intensive full-stack à
+                <strong>Mercy Innovation Lab</strong>, axée exclusivement sur l'écosystème Laravel —
+                de la conception d'API au déploiement, de la modélisation des bases de données à l'architecture frontend Vue.js.
               </p>
               <p class="reveal" data-delay="180">
-                Today, I build web applications for clients across Africa and work with teams in Europe
-                and beyond. My positioning is clear: <strong>remote-first, quality-first</strong>.
-                Geography is not a constraint — it's an advantage. I bring a unique perspective
-                shaped by solving real-world problems in resource-constrained environments,
-                which sharpens my instinct for performance and reliability.
+                Aujourd'hui, je développe des applications web pour des clients à travers l'Afrique et je collabore avec des équipes en Europe
+                et au-delà. Mon positionnement est clair : <strong>remote-first, qualité avant tout</strong>.
+                La géographie n'est pas une contrainte — c'est un avantage. J'apporte une perspective unique,
+                forgée en résolvant des problèmes concrets dans des environnements avec peu de ressources,
+                ce qui aiguise mon instinct pour la performance et la fiabilité.
               </p>
             </div>
           </div>
@@ -113,8 +113,8 @@
       <section class="values-section">
         <div class="v-inner">
           <div class="v-head">
-            <div class="sec-label reveal">02 · My values</div>
-            <h2 class="sec-h2 reveal" data-delay="60">How I work<br><em>&amp; why it matters</em></h2>
+            <div class="sec-label reveal">02 · Mes valeurs</div>
+            <h2 class="sec-h2 reveal" data-delay="60">Comment je travaille<br><em>&amp; pourquoi ça compte</em></h2>
           </div>
           <div class="v-grid">
             <div v-for="(v, i) in values" :key="v.title" class="v-card reveal" :data-delay="i * 80">
@@ -132,8 +132,8 @@
       <section class="edu-section">
         <div class="edu-inner">
           <div class="edu-head">
-            <div class="sec-label reveal">03 · Education & Training</div>
-            <h2 class="sec-h2 reveal" data-delay="60">Academic<br><em>background</em></h2>
+            <div class="sec-label reveal">03 · Formation & Parcours</div>
+            <h2 class="sec-h2 reveal" data-delay="60">Parcours<br><em>académique</em></h2>
           </div>
           <div class="edu-list">
             <div v-for="(e, i) in education" :key="i" class="edu-card reveal" :data-delay="i * 80">
@@ -159,18 +159,18 @@
         <div class="vi-bg"></div>
         <div class="vi-inner reveal">
           <div class="vi-content">
-            <div class="sec-label light">04 · Global vision</div>
-            <h2 class="vi-h2">Built in Africa,<br><em>deployed everywhere</em></h2>
+            <div class="sec-label light">04 · Vision mondiale</div>
+            <h2 class="vi-h2">Construit en Afrique,<br><em>déployé partout</em></h2>
             <p>
-              Working from Cameroon is not a limitation — it's a statement.
-              African developers are building world-class products that serve millions of users.
-              I believe the future of the web is distributed, and the best engineering talent
-              is not confined to one timezone.
+              Travailler depuis le Cameroun n'est pas une limitation — c'est une affirmation.
+              Les développeurs africains construisent des produits de classe mondiale qui servent des millions d'utilisateurs.
+              Je crois que l'avenir du web est distribué, et que les meilleurs talents en ingénierie
+              ne sont pas confinés à un seul fuseau horaire.
             </p>
             <p>
-              Whether you're a startup in Paris, a scale-up in London, a company in Douala
-              or a founder in Montreal — I bring the same commitment to every project:
-              clean architecture, reliable delivery, and real partnership.
+              Que vous soyez une startup à Paris, une scale-up à Londres, une entreprise à Douala
+              ou un fondateur à Montréal — j'apporte le même engagement à chaque projet :
+              une architecture propre, une livraison fiable et un vrai partenariat.
             </p>
             <div class="vi-flags">
               <span v-for="f in flags" :key="f.label" class="vi-flag-item">
@@ -182,13 +182,13 @@
           <div class="vi-cta-col">
             <div class="vi-cta-card">
               <div class="vcc-dot-wrap"><span class="vcc-dot"></span></div>
-              <div class="vcc-title">Ready to collaborate?</div>
-              <div class="vcc-sub">Remote · Worldwide · 2026</div>
-              <Link href="/contact" class="vcc-btn">Start a conversation →</Link>
+              <div class="vcc-title">Prêt à collaborer ?</div>
+              <div class="vcc-sub">Remote · Mondial · 2026</div>
+              <Link href="/contact" class="vcc-btn">Démarrer une conversation →</Link>
               <div class="vcc-langs">
-                <span>🇫🇷 French</span>
+                <span>🇫🇷 Français</span>
                 <span class="vcc-sep">·</span>
-                <span>🇬🇧 English</span>
+                <span>🇬🇧 Anglais</span>
               </div>
             </div>
           </div>
@@ -217,46 +217,46 @@ const showPhoto = ref(true)
 const photoUrl  = '/images/profil.png'
 
 const quickStats = [
-  { val: '3+',  label: 'Years of experience' },
-  { val: '12+', label: 'Projects delivered' },
-  { val: '2',   label: 'Languages spoken' },
-  { val: '24h', label: 'Response time' },
+  { val: '3+',  label: "Années d'expérience" },
+  { val: '12+', label: 'Projets livrés' },
+  { val: '2',   label: 'Langues parlées' },
+  { val: '24h', label: 'Temps de réponse' },
 ]
 
 const values = [
   {
-    title: 'Architecture first',
-    desc:  'I design before I code. A well-thought architecture reduces bugs, simplifies maintenance and makes scaling easy. Taking 2 days to design saves 2 weeks of refactoring.',
+    title: "Architecture d'abord",
+    desc:  "Je conçois avant de coder. Une architecture bien pensée réduit les bugs, simplifie la maintenance et facilite le passage à l'échelle. Prendre 2 jours pour concevoir économise 2 semaines de refactorisation.",
     color: '#E53E3E',
     svg:   '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',
   },
   {
-    title: 'Clean, readable code',
-    desc:  'Code is read far more than it is written. Every function, variable and class I write is named with clarity. I treat code as a long-term asset, not a quick delivery.',
+    title: 'Code propre et lisible',
+    desc:  "Le code est lu bien plus souvent qu'il n'est écrit. Chaque fonction, variable et classe que j'écris est nommée avec clarté. Je traite le code comme un actif à long terme, pas comme une livraison rapide.",
     color: '#3B82F6',
     svg:   '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
   },
   {
-    title: 'Reliable delivery',
-    desc:  'Deadlines are commitments. I communicate proactively, flag blockers early and always deliver working software. My clients know what to expect — and they get it.',
+    title: 'Livraison fiable',
+    desc:  "Les délais sont des engagements. Je communique de manière proactive, signale les blocages tôt et livre toujours un logiciel fonctionnel. Mes clients savent à quoi s'attendre — et ils l'obtiennent.",
     color: '#10B981',
     svg:   '<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
   },
   {
-    title: 'Continuous learning',
-    desc:  'Technology evolves fast. I invest time every week in deepening my knowledge — reading docs, building side projects and keeping up with the Laravel and Vue.js ecosystems.',
+    title: 'Apprentissage continu',
+    desc:  "La technologie évolue vite. J'investis du temps chaque semaine pour approfondir mes connaissances — lire la documentation, construire des projets personnels et rester à jour avec les écosystèmes Laravel et Vue.js.",
     color: '#F59E0B',
     svg:   '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
   },
   {
-    title: 'User-centered approach',
-    desc:  'I build for real users, not for demos. Performance, accessibility and UX are not afterthoughts — they are built-in from the first commit.',
+    title: 'Approche centrée utilisateur',
+    desc:  "Je construis pour de vrais utilisateurs, pas pour des démos. La performance, l'accessibilité et l'UX ne sont pas des réflexions après coup — elles sont intégrées dès le premier commit.",
     color: '#8B5CF6',
     svg:   '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
   },
   {
-    title: 'Transparent partnership',
-    desc:  'I work as a partner, not just a vendor. I ask questions, challenge requirements when needed and share my perspective — because the best outcome comes from genuine collaboration.',
+    title: 'Partenariat transparent',
+    desc:  "Je travaille comme un partenaire, pas comme un simple prestataire. Je pose des questions, challenge les exigences si nécessaire et partage mon point de vue — car le meilleur résultat vient d'une vraie collaboration.",
     color: '#EC4899',
     svg:   '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
   },
@@ -266,26 +266,26 @@ const education = [
   {
     year:  '2025',
     color: '#E53E3E',
-    title: 'Computer Science Engineering Degree (Ingénieur des Travaux Informatiques)',
-    org:   "IAI — Institut Africain d'Informatique · Yaoundé, Cameroon",
-    desc:  "Engineering program in computer science covering software architecture, advanced databases, system design, project management and software quality assurance. Final project: full-stack web application with Laravel.",
-    tags:  ['Software Engineering', 'System Architecture', 'Project Management', 'MySQL', 'Java', 'Laravel'],
+    title: "Diplôme d'Ingénieur des Travaux Informatiques",
+    org:   "IAI — Institut Africain d'Informatique · Yaoundé, Cameroun",
+    desc:  "Formation d'ingénieur en informatique couvrant l'architecture logicielle, les bases de données avancées, la conception de systèmes, la gestion de projet et l'assurance qualité logicielle. Projet de fin d'études : application web full-stack avec Laravel.",
+    tags:  ['Génie Logiciel', 'Architecture Système', 'Gestion de Projet', 'MySQL', 'Java', 'Laravel'],
   },
   {
     year:  '2025–2026',
     color: '#10B981',
-    title: 'Professional Training — Full-Stack Laravel Development',
-    org:   'Mercy Innovation Lab · Yaoundé, Cameroon',
-    desc:  "Intensive 5-month program covering the full Laravel stack: MVC architecture, Eloquent ORM, RESTful APIs, Inertia.js + Vue 3, automated testing with PHPUnit, deployment with Laravel Forge and CI/CD pipelines.",
+    title: 'Formation Professionnelle — Développement Full-Stack Laravel',
+    org:   'Mercy Innovation Lab · Yaoundé, Cameroun',
+    desc:  "Programme intensif de 5 mois couvrant la stack Laravel complète : architecture MVC, Eloquent ORM, APIs RESTful, Inertia.js + Vue 3, tests automatisés avec PHPUnit, déploiement avec Laravel Forge et pipelines CI/CD.",
     tags:  ['Laravel', 'Vue.js', 'Inertia.js', 'REST API', 'MySQL', 'PHPUnit', 'TailwindCSS'],
   },
   {
     year:  '2024',
     color: '#3B82F6',
-    title: 'DTS — Higher Technician Diploma in Computer Science',
-    org:   "IAI — Institut Africain d'Informatique · Yaoundé, Cameroon",
-    desc:  "Two-year program covering programming fundamentals, algorithms, OOP, web development (HTML/CSS/JS/PHP), database administration and network basics.",
-    tags:  ['PHP', 'JavaScript', 'HTML/CSS', 'MySQL', 'Java', 'OOP', 'Algorithms'],
+    title: 'DTS — Diplôme de Technicien Supérieur en Informatique',
+    org:   "IAI — Institut Africain d'Informatique · Yaoundé, Cameroun",
+    desc:  "Formation de deux ans couvrant les fondamentaux de la programmation, les algorithmes, la POO, le développement web (HTML/CSS/JS/PHP), l'administration de bases de données et les bases des réseaux.",
+    tags:  ['PHP', 'JavaScript', 'HTML/CSS', 'MySQL', 'Java', 'POO', 'Algorithmique'],
   },
 ]
 

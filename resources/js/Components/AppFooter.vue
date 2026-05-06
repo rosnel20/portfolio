@@ -2,10 +2,9 @@
   <footer class="footer" :class="dark ? 'dark' : 'light'" role="contentinfo">
     <div class="f-inner">
 
-      <!-- Brand -->
       <div class="f-brand">
         <Link href="/" class="f-logo" aria-label="Rosnel Pacely — Home">
-          <span class="fl-r">R</span>osnel<span class="fl-dot">.</span>
+          <span class="fl-r">R</span>osnel<span class="fl-dot">.dev</span>
         </Link>
         <p class="f-tagline">
           Full-Stack Engineer · Laravel · Vue.js · React<br>
@@ -20,7 +19,6 @@
         </div>
       </div>
 
-      <!-- Navigation -->
       <nav class="f-nav" aria-label="Footer navigation">
         <div class="fn-col">
           <div class="fn-head">Navigation</div>
@@ -53,9 +51,7 @@
               </a>
             </li>
             <li>
-              <a href="mailto:mrrosnel6@gmail.com">
-                Email
-              </a>
+              <a href="mailto:mrrosnel6@gmail.com">Email</a>
             </li>
           </ul>
         </div>
@@ -63,18 +59,16 @@
 
     </div>
 
-    <!-- Bottom bar -->
+   <!-- Watermark -->
+    <div class="f-watermark" aria-hidden="true">
+      <span class="fw-r">R</span>osnel<span class="fw-dot">.dev</span>
+    </div>
+
     <div class="f-bottom">
       <div class="f-bottom-inner">
-        <span class="f-copy">
-          © {{ year }} Mabong Anaba Rosnel Pacely — All rights reserved.
-        </span>
-        <div class="f-bottom-links">
-          <a href="/sitemap.xml" target="_blank" rel="noopener">Sitemap</a>
-          <a href="/robots.txt"  target="_blank" rel="noopener">Robots</a>
-        </div>
+        <span class="f-copy">© {{ year }} Mabong Anaba Rosnel Pacely — Tous droits réservés.</span>
         <span class="f-made">
-          Built with
+          Conçu avec
           <a href="https://laravel.com" target="_blank" rel="noopener">Laravel</a>
           ·
           <a href="https://vuejs.org" target="_blank" rel="noopener">Vue 3</a>
@@ -97,9 +91,11 @@ const year = new Date().getFullYear()
   font-family: 'Outfit', sans-serif;
   border-top: 1px solid;
   transition: background .4s, color .4s;
+  position: relative;
+  overflow: hidden;
 }
 .footer.dark  { background: #080808; color: #F0F0F0; border-color: rgba(255,255,255,.07); --muted: #444; --muted2: #666; --card-b: rgba(255,255,255,.07); --red: #E53E3E; }
-.footer.light { background: #F0F0F0; color: #0A0A0A; border-color: rgba(0,0,0,.08);    --muted: #bbb; --muted2: #999; --card-b: rgba(0,0,0,.08); --red: #C53030; }
+.footer.light { background: #F0F0F0; color: #0A0A0A; border-color: rgba(0,0,0,.08); --muted: #bbb; --muted2: #999; --card-b: rgba(0,0,0,.08); --red: #C53030; }
 
 .f-inner {
   display: grid;
@@ -107,19 +103,16 @@ const year = new Date().getFullYear()
   gap: 3rem;
   max-width: 1200px; margin: 0 auto;
   padding: 3.5rem 5vw 2.5rem;
+  position: relative; z-index: 2;
 }
 
-/* Brand */
 .f-logo {
   display: inline-flex; align-items: baseline;
   font-size: 1.15rem; font-weight: 900; letter-spacing: -.04em;
   color: inherit; text-decoration: none; margin-bottom: .75rem;
 }
 .fl-r, .fl-dot { color: var(--red); }
-.f-tagline {
-  font-size: .78rem; color: var(--muted2); line-height: 1.8;
-  margin-bottom: .9rem;
-}
+.f-tagline { font-size: .78rem; color: var(--muted2); line-height: 1.8; margin-bottom: .9rem; }
 .f-location { display: flex; align-items: center; gap: .3rem; color: var(--muted2); }
 .f-avail {
   display: inline-flex; align-items: center; gap: .45rem;
@@ -130,7 +123,6 @@ const year = new Date().getFullYear()
 .fa-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; animation: bl 2s infinite; flex-shrink: 0; }
 @keyframes bl { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-/* Nav */
 .fn-head {
   font-family: 'JetBrains Mono', monospace;
   font-size: .6rem; color: var(--muted); letter-spacing: .18em;
@@ -139,20 +131,35 @@ const year = new Date().getFullYear()
 .fn-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
 .fn-col a {
   display: inline-flex; align-items: center; gap: .3rem;
-  font-size: .82rem; color: var(--muted2); text-decoration: none;
-  transition: color .2s;
+  font-size: .82rem; color: var(--muted2); text-decoration: none; transition: color .2s;
 }
 .fn-col a:hover { color: var(--red); }
 
-/* Bottom */
-.f-bottom { border-top: 1px solid var(--card-b); }
+/* Watermark */
+.f-watermark {
+  text-align: center;
+  font-size: clamp(6rem, 20vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -.06em;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(229,62,62,.22);
+  padding: 0 5vw 2rem;
+  user-select: none;
+  position: relative; z-index: 1;
+  display: block;
+}
+.footer.light .f-watermark { -webkit-text-stroke: 1.5px rgba(180,0,0,.15); }
+.fw-r  { color: transparent; -webkit-text-stroke: 1.5px rgba(229,62,62,.5); }
+.fw-dot { color: transparent; -webkit-text-stroke: 1.5px rgba(229,62,62,.5); }
+
+.f-bottom { border-top: 1px solid var(--card-b); position: relative; z-index: 2; }
 .f-bottom-inner {
-  max-width: 1200px; margin: 0 auto;
-  padding: 1rem 5vw;
+  max-width: 1200px; margin: 0 auto; padding: 1rem 5vw;
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: .6rem;
 }
-.f-copy  { font-size: .72rem; color: var(--muted2); }
+.f-copy { font-size: .72rem; color: var(--muted2); }
 .f-bottom-links { display: flex; gap: 1rem; }
 .f-bottom-links a { font-size: .7rem; color: var(--muted); text-decoration: none; transition: color .2s; }
 .f-bottom-links a:hover { color: var(--red); }
@@ -160,7 +167,6 @@ const year = new Date().getFullYear()
 .f-made a { color: var(--muted2); text-decoration: none; transition: color .2s; }
 .f-made a:hover { color: var(--red); }
 
-/* Responsive */
 @media (max-width: 900px) {
   .f-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .f-brand { grid-column: 1 / -1; }

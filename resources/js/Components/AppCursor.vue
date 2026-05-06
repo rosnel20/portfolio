@@ -1,5 +1,10 @@
 <template>
-  <div v-if="visible" class="cursor-dot" :style="{ left: x + 'px', top: y + 'px', transform: `translate(-50%, -50%) scale(${clicking ? 0.6 : hovering ? 2.2 : 1})`, opacity: hovering ? 0.5 : 1 }"></div>
+  <div v-if="visible" class="cursor-dot" :style="{
+    left: x + 'px',
+    top: y + 'px',
+    transform: `translate(-50%, -50%) scale(${clicking ? 0.6 : hovering ? 2.2 : 1})`,
+    opacity: hovering ? 0.5 : 1
+  }"></div>
 </template>
 
 <script setup>
@@ -16,9 +21,9 @@ function onMove(e) {
   y.value = e.clientY
   if (!visible.value) visible.value = true
 }
-function onDown()   { clicking.value = true  }
-function onUp()     { clicking.value = false }
-function onOver(e)  { hovering.value = !!(e.target.closest('a, button, [role=button], .pc, .oc, .feat-card, .tl-card')) }
+function onDown()  { clicking.value = true  }
+function onUp()    { clicking.value = false }
+function onOver(e) { hovering.value = !!(e.target.closest('a, button, [role=button], .pc, .oc, .feat-card, .tl-card')) }
 
 onMounted(() => {
   window.addEventListener('mousemove', onMove, { passive: true })
@@ -44,10 +49,8 @@ onUnmounted(() => {
   pointer-events: none;
   z-index: 99999;
   transition: transform 0.15s ease, opacity 0.15s ease;
-  mix-blend-mode: difference;
 }
 
-/* Masqué sur mobile / touch */
 @media (hover: none) {
   .cursor-dot { display: none; }
 }
