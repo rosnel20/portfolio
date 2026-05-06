@@ -23,7 +23,7 @@
       <div class="nav-actions">
         <button
           class="nav-theme"
-          :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+          :aria-label="dark ? 'Passer en mode clair' : 'Passer en mode sombre'"
           @click="$emit('toggle-theme')"
         >
           <svg v-if="dark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -43,7 +43,7 @@
         </button>
 
         <Link href="/contact" class="nav-cta">
-          Hire me
+          Recrute-moi
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <line x1="5" y1="12" x2="19" y2="12"/>
             <polyline points="12 5 19 12 12 19"/>
@@ -54,7 +54,7 @@
           class="nav-burger"
           :class="{ open: menuOpen }"
           :aria-expanded="menuOpen.toString()"
-          aria-label="Toggle menu"
+          aria-label="Ouvrir le menu"
           @click="menuOpen = !menuOpen"
         >
           <span></span>
@@ -84,7 +84,7 @@
           </li>
         </ul>
         <Link href="/contact" class="nm-cta" @click="menuOpen = false">
-          Hire me →
+          Recrute-moi →
         </Link>
         <div class="nm-locale">
           <span>🇫🇷 FR</span>
@@ -97,34 +97,32 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { Link } from '@inertiajs/vue3'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { Link, usePage } from '@inertiajs/vue3'
 
 defineProps({ dark: Boolean })
 defineEmits(['toggle-theme'])
 
-const menuOpen    = ref(false)
-const scrolled    = ref(false)
-const currentPath = ref('/')
+const menuOpen = ref(false)
+const scrolled  = ref(false)
+const page      = usePage()
 
 const links = [
-  { href: '/',        label: 'Home' },
-  { href: '/about',   label: 'About' },
+  { href: '/',        label: 'Accueil' },
+  { href: '/about',   label: 'À propos' },
   { href: '/blog',    label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ]
 
 function isActive(href) {
-  if (href === '/') return currentPath.value === '/'
-  return currentPath.value.startsWith(href)
+  const path = page.url
+  if (href === '/') return path === '/' || path === ''
+  return path.startsWith(href)
 }
 
 function onScroll() { scrolled.value = window.scrollY > 40 }
 
-onMounted(() => {
-  currentPath.value = window.location.pathname
-  window.addEventListener('scroll', onScroll, { passive: true })
-})
+onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 

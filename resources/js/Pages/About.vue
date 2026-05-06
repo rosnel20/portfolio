@@ -214,7 +214,7 @@ const { theme, toggleTheme } = useTheme()
 useScrollReveal()
 
 const showPhoto = ref(true)
-const photoUrl  = '/images/profil.png'
+const photoUrl  = '/images/profil.jpg'
 
 const quickStats = [
   { val: '3+',  label: "Années d'expérience" },

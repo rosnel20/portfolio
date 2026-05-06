@@ -3,9 +3,9 @@
     <div class="f-inner">
 
       <div class="f-brand">
-        <Link href="/" class="f-logo" aria-label="Rosnel Pacely — Home">
+        <span class="f-logo">
           <span class="fl-r">R</span>osnel<span class="fl-dot">.dev</span>
-        </Link>
+        </span>
         <p class="f-tagline">
           Full-Stack Engineer · Laravel · Vue.js · React<br>
           <span class="f-location">
@@ -67,14 +67,6 @@
     <div class="f-bottom">
       <div class="f-bottom-inner">
         <span class="f-copy">© {{ year }} Mabong Anaba Rosnel Pacely — Tous droits réservés.</span>
-        <span class="f-made">
-          Conçu avec
-          <a href="https://laravel.com" target="_blank" rel="noopener">Laravel</a>
-          ·
-          <a href="https://vuejs.org" target="_blank" rel="noopener">Vue 3</a>
-          ·
-          <a href="https://inertiajs.com" target="_blank" rel="noopener">Inertia.js</a>
-        </span>
       </div>
     </div>
   </footer>
@@ -104,12 +96,23 @@ const year = new Date().getFullYear()
   max-width: 1200px; margin: 0 auto;
   padding: 3.5rem 5vw 2.5rem;
   position: relative; z-index: 2;
+  align-items: start;
+}
+
+.f-nav {
+  display: contents;
+}
+
+.fn-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .f-logo {
   display: inline-flex; align-items: baseline;
   font-size: 1.15rem; font-weight: 900; letter-spacing: -.04em;
-  color: inherit; text-decoration: none; margin-bottom: .75rem;
+  color: inherit; margin-bottom: .75rem;
 }
 .fl-r, .fl-dot { color: var(--red); }
 .f-tagline { font-size: .78rem; color: var(--muted2); line-height: 1.8; margin-bottom: .9rem; }
@@ -156,8 +159,7 @@ const year = new Date().getFullYear()
 .f-bottom { border-top: 1px solid var(--card-b); position: relative; z-index: 2; }
 .f-bottom-inner {
   max-width: 1200px; margin: 0 auto; padding: 1rem 5vw;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: .6rem;
+  display: flex; align-items: center; justify-content: center;
 }
 .f-copy { font-size: .72rem; color: var(--muted2); }
 .f-bottom-links { display: flex; gap: 1rem; }

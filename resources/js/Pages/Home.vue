@@ -16,7 +16,7 @@
           <div class="h-left">
             <div class="avail-bar reveal" data-delay="0">
               <span class="av-dot"></span>
-              <span>Available · Remote · <strong>2026</strong></span>
+              <span>Disponible · Remote · <strong>2026</strong></span>
             </div>
             <h1 class="h1 reveal" data-delay="80">
               <span class="h1-sm">Mabong Anaba</span>
@@ -27,30 +27,30 @@
               Full-Stack Engineer · Laravel · Vue.js · React
             </div>
             <p class="hdesc reveal" data-delay="200">
-              I build robust web systems, APIs that scale and interfaces
-              that make an impression — for clients in Africa and worldwide.
-              Clean code · Thoughtful architecture · Fast delivery.
+              Je conçois des systèmes web robustes, des APIs scalables et des interfaces
+              qui marquent les esprits — pour des clients en Afrique et dans le monde entier.
+              Code propre · Architecture réfléchie · Livraison rapide.
             </p>
             <div class="hbtns reveal" data-delay="260">
               <a href="#projects" class="btn-red" @click.prevent="go('projects')">
-                View my projects
+                Voir mes projets
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
-              <Link href="/contact" class="btn-outline">Contact me</Link>
+              <Link href="/contact" class="btn-outline">Me contacter</Link>
               <button class="btn-cv" @click="showCV = true">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                My CV / Resume
+                Mon CV / Resume
               </button>
             </div>
             <div class="stats reveal" ref="statsRef" data-delay="340">
               <div class="st">
                 <span class="st-n">{{ counters.projects }}<span class="st-plus">+</span></span>
-                <span class="st-l">Projects</span>
+                <span class="st-l">Projets</span>
               </div>
               <div class="st-sep"></div>
               <div class="st">
                 <span class="st-n">{{ counters.years }}<span class="st-plus">+</span></span>
-                <span class="st-l">Years</span>
+                <span class="st-l">Années</span>
               </div>
               <div class="st-sep"></div>
               <div class="st">
@@ -89,20 +89,20 @@
       <section id="about" class="about">
         <div class="a-inner">
           <div class="a-left">
-            <div class="sec-label reveal">01 · About</div>
-            <h2 class="sec-h2 reveal" data-delay="60">The engineer<br><em>behind the code</em></h2>
-            <p class="reveal" data-delay="120">Computer Science Engineer graduated from IAI (Institut Africain d'Informatique), specialized in full-stack Laravel development with a focus on performance, maintainability and user experience. Available for remote missions worldwide.</p>
-            <p class="reveal" data-delay="180">My approach: architecture first, implementation second. Every project I deliver is built to last and evolve — whether for a startup in Paris, a company in London, or a business in Douala.</p>
+            <div class="sec-label reveal">01 · À propos</div>
+            <h2 class="sec-h2 reveal" data-delay="60">L'ingénieur<br><em>derrière le code</em></h2>
+            <p class="reveal" data-delay="120">Ingénieur en informatique diplômé de l'IAI (Institut Africain d'Informatique), spécialisé en développement full-stack Laravel avec un accent sur la performance, la maintenabilité et l'expérience utilisateur. Disponible pour des missions à distance dans le monde entier.</p>
+            <p class="reveal" data-delay="180">Mon approche : l'architecture d'abord, l'implémentation ensuite. Chaque projet que je livre est conçu pour durer et évoluer — que ce soit pour une startup à Paris, une entreprise à Londres, ou une société à Douala.</p>
             <div class="chips reveal" data-delay="240">
               <span v-for="c in chips" :key="c">{{ c }}</span>
             </div>
             <a href="/cv-rosnel-pacely.pdf" download class="about-cv reveal" data-delay="300">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download my CV / Resume
+              Télécharger mon CV / Resume
             </a>
           </div>
           <div class="a-right">
-            <div class="sk-head reveal">Skills</div>
+            <div class="sk-head reveal">Compétences</div>
             <div class="sk-list">
               <div v-for="(s, idx) in skills" :key="s.name" class="sk-row reveal" :data-delay="idx * 60">
                 <div class="skr-top">
@@ -118,7 +118,7 @@
           </div>
         </div>
         <div class="tools-row">
-          <div class="tr-label">Tech stack</div>
+          <div class="tr-label">Stack technique</div>
           <div class="tr-wrap">
             <div class="tr-track">
               <div v-for="(t,i) in [...tools,...tools]" :key="i" class="tr-chip">
@@ -135,8 +135,8 @@
       <section id="timeline" class="timeline-sec">
         <div class="tl-inner">
           <div class="tl-head">
-            <div class="sec-label reveal">02 · Journey</div>
-            <h2 class="sec-h2 reveal" data-delay="60">Education &<br><em>experience</em></h2>
+            <div class="sec-label reveal">02 · Parcours</div>
+            <h2 class="sec-h2 reveal" data-delay="60">Formation &<br><em>expérience</em></h2>
           </div>
           <div class="tl-track">
             <div v-for="(item, i) in timeline" :key="i" class="tl-item">
@@ -150,7 +150,7 @@
                 <div class="tlc-meta">
                   <span class="tlc-year" :style="{ color: item.color }">{{ item.year }}</span>
                   <span class="tlc-badge" :style="{ color: item.color, background: item.color+'16', borderColor: item.color+'30' }">
-                    {{ item.type === 'edu' ? 'Education' : 'Experience' }}
+                    {{ item.type === 'edu' ? 'Formation' : 'Expérience' }}
                   </span>
                 </div>
                 <div class="tlc-title">{{ item.title }}</div>
@@ -172,24 +172,27 @@
       <section id="projects" class="projects">
         <div class="p-inner">
           <div class="p-head">
-            <div class="sec-label reveal">03 · Projects</div>
-            <h2 class="sec-h2 reveal" data-delay="60">What I've<br><em>built</em></h2>
+            <div class="sec-label reveal">03 · Projets</div>
+            <h2 class="sec-h2 reveal" data-delay="60">Ce que j'ai<br><em>construit</em></h2>
           </div>
           <div class="p-grid">
             <article v-for="(p,i) in projects" :key="p.slug" class="pc reveal" :style="{ '--c': p.color }" :data-delay="i * 100">
               <Link :href="'/projets/'+p.slug" class="pc-visual">
-                <!-- loading="lazy" pour les images de projets -->
                 <img v-if="p.image" :src="p.image" :alt="p.title" class="pc-img" loading="lazy" decoding="async"/>
                 <div v-else class="pc-visual-ph">
-                  <div class="pcvph-num">{{ String(i+1).padStart(2,'0') }}</div>
                   <div class="pcvph-stack">
-                    <img v-for="logo in p.logos" :key="logo" :src="logo" width="24" height="24" style="object-fit:contain" loading="lazy" decoding="async"/>
+                    <img v-for="logo in p.logos" :key="logo" :src="logo" width="28" height="28" style="object-fit:contain" loading="lazy" decoding="async"/>
                   </div>
                 </div>
-                <div class="pc-overlay"><span>View project →</span></div>
+                <div class="pc-overlay">
+                  <span>
+                    Voir le projet
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </span>
+                </div>
               </Link>
               <div class="pc-body">
-                <div class="pc-head-row">
+                <div class="pc-meta">
                   <div class="pc-tags"><span v-for="t in p.tags" :key="t">{{ t }}</span></div>
                   <span class="pc-yr">{{ p.year }}</span>
                 </div>
@@ -197,7 +200,7 @@
                 <p class="pc-desc">{{ p.desc }}</p>
                 <div class="pc-actions">
                   <Link :href="'/projets/'+p.slug" class="pca-main">
-                    View project
+                    Voir le projet
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </Link>
                   <a v-if="p.github" :href="p.github" target="_blank" rel="noopener" class="pca-gh">
@@ -216,13 +219,13 @@
         <div class="c-bg"></div>
         <div class="c-inner reveal">
           <div class="sec-label light">04 · Contact</div>
-          <h2 class="c-h2">Let's build something<br><em>great together</em></h2>
-          <p class="c-p">Freelance mission, full-time position, open collaboration — I'm available remotely worldwide. I reply within 24h.</p>
+          <h2 class="c-h2">Construisons quelque chose<br><em>de grand ensemble</em></h2>
+          <p class="c-p">Mission freelance, poste en CDI, collaboration ouverte — je suis disponible à distance dans le monde entier. Je réponds sous 24h.</p>
           <Link href="/contact" class="c-btn">
-            Open contact form
+            Ouvrir le formulaire de contact
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </Link>
-          <div class="c-or">or directly</div>
+          <div class="c-or">ou directement</div>
           <a href="mailto:mrrosnel6@gmail.com" class="c-email">
             mrrosnel6@gmail.com
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -272,7 +275,7 @@ const showCV = ref(false)
 
 /* ── Photo profil ── */
 const showPhoto = ref(true)
-const photoUrl  = '/images/profil.png'  // PNG transparent recommandé
+const photoUrl  = '/images/profil.jpg'  // PNG transparent recommandé
 
 /* ── Compteurs animés ── */
 const statsRef = ref(null)
@@ -341,19 +344,19 @@ const timeline = [
     year:  '2025',
     type:  'edu',
     color: '#E53E3E',
-    title: "Computer Science Engineering Degree",
-    org:   "IAI — Institut Africain d'Informatique · Cameroon",
-    desc:  "Engineering degree in computer science, specializing in software development and information systems. Training focused on architecture, advanced databases and project management.",
-    tags:  ['Software Engineering', 'IS Architecture', 'Databases', 'Project Management'],
+    title: "Diplôme d'Ingénieur en Informatique",
+    org:   "IAI — Institut Africain d'Informatique · Cameroun",
+    desc:  "Diplôme d'ingénieur en informatique, spécialisation en développement logiciel et systèmes d'information. Formation axée sur l'architecture, les bases de données avancées et la gestion de projets.",
+    tags:  ['Génie Logiciel', 'Architecture SI', 'Bases de données', 'Gestion de projet'],
     icon:  '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
   },
   {
     year:  '2025 – 2026',
     type:  'work',
     color: '#10B981',
-    title: 'Professional Training — Laravel Full-Stack Development',
-    org:   'Mercy Innovation Lab · Cameroon',
-    desc:  "Intensive 5-month training program entirely dedicated to Laravel application development for full-stack developers. RESTful API design, MVC architecture, Eloquent ORM, automated testing and deployment.",
+    title: 'Formation professionnelle — Développement Full-Stack Laravel',
+    org:   'Mercy Innovation Lab · Cameroun',
+    desc:  "Programme de formation intensive de 5 mois entièrement dédié au développement d'applications Laravel pour développeurs full-stack. Conception d'API RESTful, architecture MVC, Eloquent ORM, tests automatisés et déploiement.",
     tags:  ['Laravel', 'PHP', 'MySQL', 'REST API', 'Vue.js', 'Inertia.js'],
     icon:  '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
   },
@@ -361,10 +364,10 @@ const timeline = [
     year:  '2024',
     type:  'edu',
     color: '#3B82F6',
-    title: 'DTS in Computer Science',
-    org:   "IAI — Institut Africain d'Informatique · Cameroon",
-    desc:  "Higher technician diploma in computer science. Training in software development fundamentals, algorithms, object-oriented programming, web development and database administration.",
-    tags:  ['HTML/CSS', 'PHP', 'JavaScript', 'MySQL', 'Java', 'OOP'],
+    title: 'DTS en Informatique',
+    org:   "IAI — Institut Africain d'Informatique · Cameroun",
+    desc:  "Diplôme de technicien supérieur en informatique. Formation aux fondamentaux du développement logiciel, algorithmique, programmation orientée objet, développement web et administration de bases de données.",
+    tags:  ['HTML/CSS', 'PHP', 'JavaScript', 'MySQL', 'Java', 'POO'],
     icon:  '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
   },
 ]
@@ -374,7 +377,7 @@ const projects = [
   {
     slug:   'taskflow',
     title:  'TaskFlow',
-    desc:   'Complete project management platform for IT engineers. Built with Laravel and Blade. Handles tasks, milestones and team collaboration.',
+    desc:   'Plateforme complète de gestion de projets pour ingénieurs IT. Développée avec Laravel et Blade. Gestion des tâches, jalons et collaboration en équipe.',
     year:   '2025',
     tags:   ['Laravel', 'Blade', 'MySQL', 'Bootstrap'],
     color:  '#E53E3E',
@@ -535,29 +538,105 @@ const projects = [
 .tlc-tags  { display: flex; flex-wrap: wrap; gap: .32rem; }
 .tlc-tags span { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--muted2); background: var(--card); border: 1px solid var(--card-b); padding: .12rem .5rem; border-radius: 4px; }
 
-/* ══ PROJETS — auto-fit s'adapte au nombre de projets ══ */
+/* ══ PROJETS ══ */
 .projects { background: var(--bg2); padding: 6rem 5vw; }
 .p-inner  { max-width: 1200px; margin: 0 auto; }
 .p-head   { margin-bottom: 3rem; }
-.p-grid   { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
-.pc { background: var(--card); border: 1px solid var(--card-b); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, border-color .25s, box-shadow .25s; }
-.pc-visual { display: block; position: relative; overflow: hidden; height: 180px; flex-shrink: 0; text-decoration: none; background: color-mix(in srgb, var(--c) 14%, var(--bg)); }
-.pc-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform .35s; }
-.pc-visual-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; }
-.pcvph-num { font-size: 4rem; font-weight: 900; color: var(--c); opacity: .16; letter-spacing: -.06em; line-height: 1; }
-.pcvph-stack { display: flex; gap: .6rem; align-items: center; }
-.pc-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.58); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .25s; z-index: 2; }
-.pc-overlay span { color: #fff; font-weight: 700; font-size: .88rem; border: 1px solid rgba(255,255,255,.55); padding: .5rem 1.3rem; border-radius: 8px; backdrop-filter: blur(4px); }
-.pc-body { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; }
-.pc-head-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .85rem; gap: .5rem; }
-.pc-tags { display: flex; flex-wrap: wrap; gap: .28rem; }
-.pc-tags span { font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--c); background: color-mix(in srgb, var(--c) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c) 24%, transparent); padding: .12rem .48rem; border-radius: 4px; }
-.pc-yr    { font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--muted); white-space: nowrap; }
-.pc-title { font-size: 1.04rem; font-weight: 800; color: var(--text); margin-bottom: .48rem; letter-spacing: -.02em; }
-.pc-desc  { font-size: .79rem; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 1.2rem; }
-.pc-actions { display: flex; align-items: center; gap: .6rem; margin-top: auto; }
-.pca-main { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 700; color: var(--c); text-decoration: none; transition: gap .2s; }
-.pca-gh { display: inline-flex; align-items: center; gap: .35rem; font-size: .72rem; color: var(--muted2); text-decoration: none; border: 1px solid var(--card-b); padding: .25rem .65rem; border-radius: 6px; margin-left: auto; transition: color .2s, border-color .2s; }
+.p-grid   { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.4rem; }
+
+.pc {
+  background: var(--card);
+  border: 1px solid var(--card-b);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+
+/* Image */
+.pc-visual {
+  display: block; position: relative;
+  overflow: hidden; height: 200px;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--c) 12%, var(--bg));
+  flex-shrink: 0;
+}
+.pc-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block;
+  transition: transform .35s;
+}
+.pc-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: rgba(0,0,0,.55);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .28s;
+  backdrop-filter: blur(2px);
+}
+.pc-overlay span {
+  display: inline-flex; align-items: center; gap: .45rem;
+  color: #fff; font-weight: 700; font-size: .88rem;
+  border: 1.5px solid rgba(255,255,255,.55);
+  padding: .55rem 1.3rem; border-radius: 9px;
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.08);
+}
+.pc-visual-ph {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.pcvph-stack { display: flex; gap: .7rem; align-items: center; }
+
+/* Corps */
+.pc-body {
+  padding: 1.4rem 1.5rem;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.pc-meta {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: .5rem;
+  margin-bottom: 1rem;
+}
+.pc-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+.pc-tags span {
+  font-family: 'JetBrains Mono', monospace; font-size: .6rem;
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
+  padding: .16rem .5rem; border-radius: 5px;
+}
+.pc-yr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .6rem; color: var(--muted); white-space: nowrap;
+}
+.pc-title {
+  font-size: 1.1rem; font-weight: 800;
+  color: var(--text); letter-spacing: -.03em;
+  margin-bottom: .6rem; line-height: 1.2;
+}
+.pc-desc {
+  font-size: .82rem; color: var(--muted2);
+  line-height: 1.75; flex: 1; margin-bottom: 1.4rem;
+}
+.pc-actions {
+  display: flex; align-items: center; gap: .6rem;
+  margin-top: auto; padding-top: 1rem;
+  border-top: 1px solid var(--card-b);
+}
+.pca-main {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .8rem; font-weight: 700; color: var(--c);
+  text-decoration: none; transition: gap .2s;
+}
+.pca-gh {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .75rem; color: var(--muted2); text-decoration: none;
+  border: 1px solid var(--card-b); padding: .3rem .75rem;
+  border-radius: 7px; margin-left: auto;
+  transition: color .2s, border-color .2s;
+}
 
 /* ══ CONTACT ══ */
 .contact { position: relative; overflow: hidden; background: #080808; padding: 8rem 5vw; text-align: center; }
@@ -574,9 +653,11 @@ const projects = [
 
 /* ══ HOVER : uniquement sur les vrais dispositifs pointeurs ══ */
 @media (hover: hover) and (pointer: fine) {
-  .pc:hover { transform: translateY(-6px); border-color: var(--c); box-shadow: 0 16px 48px rgba(0,0,0,.22); }
-  .pc:hover .pc-img { transform: scale(1.05); }
+  .pc:hover { transform: translateY(-5px); border-color: var(--c); box-shadow: 0 16px 48px rgba(0,0,0,.18); }
+  .pc:hover .pc-img { transform: scale(1.04); }
   .pc:hover .pc-overlay { opacity: 1; }
+  .pca-main:hover { gap: .7rem; }
+  .pca-gh:hover { color: var(--text); border-color: var(--c); }
   .btn-red:hover { transform: translateY(-2px); opacity: .9; }
   .btn-outline:hover { border-color: var(--red); background: var(--red-soft); }
   .btn-cv:hover { border-color: var(--red); background: var(--red-soft); color: var(--red); }
@@ -589,19 +670,8 @@ const projects = [
   .about-cv:hover { background: rgba(229,62,62,.18); border-color: var(--red); }
 }
 
-/* Sur mobile : overlay projet toujours visible */
-@media (hover: none) {
-  .pc-overlay {
-    opacity: 1;
-    background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 60%);
-    align-items: flex-end;
-    padding-bottom: .75rem;
-  }
-  .pc-overlay span {
-    font-size: .75rem;
-    padding: .35rem 1rem;
-    border-radius: 6px;
-  }
+@media (max-width: 860px) {
+  .p-head-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
 
 /* ══ RESPONSIVE ══ */
