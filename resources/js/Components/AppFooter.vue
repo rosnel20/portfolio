@@ -1,56 +1,86 @@
 <template>
-  <footer class="footer">
-    <div class="fi">
-      <div class="ft-top">
-        <div class="ft-brand">
-          <Link href="/" class="fb-logo">rosnel<span class="dot">.</span>dev</Link>
-          <p>Ingénieur des Travaux Informatiques</p>
-          <p>Full-Stack Developer · Cameroun</p>
-          <div class="fb-badge">
-            <span class="fbb-dot"></span>Disponible pour missions
-          </div>
-        </div>
-        <div class="ft-nav">
-          <div class="fn-col">
-            <span class="fn-head">Navigation</span>
-            <a href="/#hero"     @click.prevent="go('hero')">Accueil</a>
-            <a href="/#about"    @click.prevent="go('about')">À propos</a>
-            <a href="/#projects" @click.prevent="go('projects')">Projets</a>
-            <Link href="/contact">Contact</Link>
-          </div>
-          <div class="fn-col">
-            <span class="fn-head">Liens</span>
-            <a href="https://github.com/rosnel20" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="https://linkedin.com/in/rosneldev" target="_blank" rel="noopener">LinkedIn ↗</a>
-            <a href="mailto:mrrosnel6@gmail.com">Email ↗</a>
-          </div>
+  <footer class="footer" :class="dark ? 'dark' : 'light'" role="contentinfo">
+    <div class="f-inner">
+
+      <!-- Brand -->
+      <div class="f-brand">
+        <Link href="/" class="f-logo" aria-label="Rosnel Pacely — Home">
+          <span class="fl-r">R</span>osnel<span class="fl-dot">.</span>
+        </Link>
+        <p class="f-tagline">
+          Full-Stack Engineer · Laravel · Vue.js · React<br>
+          <span class="f-location">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Yaoundé, Cameroon — Remote worldwide
+          </span>
+        </p>
+        <div class="f-avail">
+          <span class="fa-dot"></span>
+          Open to opportunities · 2026
         </div>
       </div>
 
-      <div class="ft-email-block">
-        <span class="feb-label">Contactez-moi directement</span>
-        <a href="mailto:mrrosnel6@gmail.com" class="feb-email">
-          mrrosnel6@gmail.com
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="ft-hr"></div>
-
-      <div class="ft-bottom">
-        <span>© 2025 Mabong Anaba Ronel Pacely</span>
-        <div class="ft-icons">
-          <a href="https://github.com/rosnel20" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/rosneldev" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="mailto:mrrosnel6@gmail.com" aria-label="Email">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
+      <!-- Navigation -->
+      <nav class="f-nav" aria-label="Footer navigation">
+        <div class="fn-col">
+          <div class="fn-head">Navigation</div>
+          <ul>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/about">About</Link></li>
+            <li><Link href="/blog">Blog</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
+          </ul>
         </div>
-        <span class="ft-made">Vue · Laravel · Inertia</span>
+        <div class="fn-col">
+          <div class="fn-head">Projects</div>
+          <ul>
+            <li><Link href="/projets/taskflow">TaskFlow</Link></li>
+          </ul>
+        </div>
+        <div class="fn-col">
+          <div class="fn-head">Connect</div>
+          <ul>
+            <li>
+              <a href="https://github.com/rosnel20" target="_blank" rel="noopener">
+                GitHub
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/rosneldev" target="_blank" rel="noopener">
+                LinkedIn
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:mrrosnel6@gmail.com">
+                Email
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="f-bottom">
+      <div class="f-bottom-inner">
+        <span class="f-copy">
+          © {{ year }} Mabong Anaba Rosnel Pacely — All rights reserved.
+        </span>
+        <div class="f-bottom-links">
+          <a href="/sitemap.xml" target="_blank" rel="noopener">Sitemap</a>
+          <a href="/robots.txt"  target="_blank" rel="noopener">Robots</a>
+        </div>
+        <span class="f-made">
+          Built with
+          <a href="https://laravel.com" target="_blank" rel="noopener">Laravel</a>
+          ·
+          <a href="https://vuejs.org" target="_blank" rel="noopener">Vue 3</a>
+          ·
+          <a href="https://inertiajs.com" target="_blank" rel="noopener">Inertia.js</a>
+        </span>
       </div>
     </div>
   </footer>
@@ -58,59 +88,91 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3'
-function go(id) {
-  const el = document.getElementById(id)
-  if (el) window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' })
-  else window.location.href = '/#' + id
-}
+defineProps({ dark: { type: Boolean, default: true } })
+const year = new Date().getFullYear()
 </script>
 
 <style scoped>
-.footer { background:var(--footer-bg); border-top:1px solid var(--card-b); }
-.fi { max-width:1200px; margin:0 auto; padding:4rem 5vw 2rem; }
+.footer {
+  font-family: 'Outfit', sans-serif;
+  border-top: 1px solid;
+  transition: background .4s, color .4s;
+}
+.footer.dark  { background: #080808; color: #F0F0F0; border-color: rgba(255,255,255,.07); --muted: #444; --muted2: #666; --card-b: rgba(255,255,255,.07); --red: #E53E3E; }
+.footer.light { background: #F0F0F0; color: #0A0A0A; border-color: rgba(0,0,0,.08);    --muted: #bbb; --muted2: #999; --card-b: rgba(0,0,0,.08); --red: #C53030; }
 
-.ft-top { display:flex; justify-content:space-between; gap:3rem; flex-wrap:wrap; margin-bottom:3rem; }
-.ft-brand { max-width:240px; }
-.fb-logo { font-family:'Outfit',sans-serif; font-size:1.35rem; font-weight:900; color:var(--text); text-decoration:none; letter-spacing:-.04em; display:block; margin-bottom:.7rem; }
-.dot { color:var(--red); }
-.ft-brand p { font-size:.8rem; color:var(--muted); line-height:1.7; }
-.fb-badge { display:inline-flex; align-items:center; gap:.45rem; margin-top:1rem; font-size:.7rem; color:var(--muted); background:var(--card); border:1px solid var(--card-b); padding:.26rem .75rem; border-radius:100px; }
-.fbb-dot { width:5px; height:5px; border-radius:50%; background:#4ADE80; animation:p 2s infinite; flex-shrink:0; }
-@keyframes p { 0%,100%{opacity:1} 50%{opacity:.35} }
-
-.ft-nav { display:flex; gap:3rem; flex-wrap:wrap; }
-.fn-col { display:flex; flex-direction:column; gap:.55rem; }
-.fn-head { font-size:.63rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-bottom:.35rem; }
-.fn-col a { font-size:.82rem; color:var(--muted2); text-decoration:none; transition:color .18s; cursor:pointer; }
-.fn-col a:hover { color:var(--text); }
-
-.ft-email-block { margin-bottom:2.5rem; }
-.feb-label { display:block; font-size:.62rem; color:var(--muted); text-transform:uppercase; letter-spacing:.18em; margin-bottom:.55rem; }
-.feb-email { display:inline-flex; align-items:center; gap:.7rem; font-family:'Outfit',sans-serif; font-size:clamp(1rem,2.5vw,2rem); font-weight:800; color:var(--text); text-decoration:none; letter-spacing:-.03em; border-bottom:1px solid var(--card-b); padding-bottom:.2rem; transition:color .2s,border-color .2s,gap .2s; }
-.feb-email:hover { color:var(--red); border-color:var(--red); gap:1rem; }
-.feb-email svg { transition:transform .2s; flex-shrink:0; }
-.feb-email:hover svg { transform:translate(3px,-3px); }
-
-.ft-hr { height:1px; background:var(--card-b); margin-bottom:1.5rem; position:relative; overflow:hidden; }
-.ft-hr::after { content:''; position:absolute; inset-block:0; left:0; width:22%; background:linear-gradient(90deg,var(--red),transparent); }
-
-.ft-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.8rem; font-size:.74rem; color:var(--muted); }
-.ft-icons { display:flex; gap:.45rem; }
-.ft-icons a { display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; background:var(--card); border:1px solid var(--card-b); color:var(--muted2); text-decoration:none; transition:color .2s,border-color .2s; }
-.ft-icons a:hover { color:var(--text); border-color:var(--red); }
-.ft-made { opacity:.38; }
-
-/* Responsive */
-@media (max-width:680px) {
-  .ft-top  { flex-direction:column; gap:2rem; }
-  .ft-brand { max-width:100%; }
-  .ft-nav  { gap:2rem; }
-  .feb-email { font-size:clamp(.95rem,5vw,1.4rem); word-break:break-all; }
-  .ft-bottom { flex-direction:column; align-items:flex-start; gap:.6rem; }
+.f-inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px; margin: 0 auto;
+  padding: 3.5rem 5vw 2.5rem;
 }
 
-@media (max-width:400px) {
-  .fi { padding:3rem 4vw 1.5rem; }
-  .fn-col { gap:.45rem; }
+/* Brand */
+.f-logo {
+  display: inline-flex; align-items: baseline;
+  font-size: 1.15rem; font-weight: 900; letter-spacing: -.04em;
+  color: inherit; text-decoration: none; margin-bottom: .75rem;
+}
+.fl-r, .fl-dot { color: var(--red); }
+.f-tagline {
+  font-size: .78rem; color: var(--muted2); line-height: 1.8;
+  margin-bottom: .9rem;
+}
+.f-location { display: flex; align-items: center; gap: .3rem; color: var(--muted2); }
+.f-avail {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .7rem; color: var(--muted2);
+  background: rgba(229,62,62,.07); border: 1px solid rgba(229,62,62,.15);
+  padding: .3rem .8rem; border-radius: 100px;
+}
+.fa-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; animation: bl 2s infinite; flex-shrink: 0; }
+@keyframes bl { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* Nav */
+.fn-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .6rem; color: var(--muted); letter-spacing: .18em;
+  text-transform: uppercase; margin-bottom: .9rem;
+}
+.fn-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
+.fn-col a {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .82rem; color: var(--muted2); text-decoration: none;
+  transition: color .2s;
+}
+.fn-col a:hover { color: var(--red); }
+
+/* Bottom */
+.f-bottom { border-top: 1px solid var(--card-b); }
+.f-bottom-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 1rem 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .6rem;
+}
+.f-copy  { font-size: .72rem; color: var(--muted2); }
+.f-bottom-links { display: flex; gap: 1rem; }
+.f-bottom-links a { font-size: .7rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+.f-bottom-links a:hover { color: var(--red); }
+.f-made { font-size: .7rem; color: var(--muted); }
+.f-made a { color: var(--muted2); text-decoration: none; transition: color .2s; }
+.f-made a:hover { color: var(--red); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .f-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .f-brand { grid-column: 1 / -1; }
+  .f-nav   { display: contents; }
+}
+@media (max-width: 560px) {
+  .f-inner { grid-template-columns: 1fr 1fr; padding: 2.5rem 5vw 1.5rem; }
+  .f-bottom-inner { flex-direction: column; align-items: flex-start; gap: .4rem; }
+  .f-made { order: -1; }
+}
+@media (max-width: 380px) {
+  .f-inner { grid-template-columns: 1fr; }
+  .f-bottom-inner { padding: .9rem 4vw; }
 }
 </style>

@@ -5,9 +5,58 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
+/*
+|--------------------------------------------------------------------------
+| Pages principales
+|--------------------------------------------------------------------------
+*/
 Route::get('/',        fn() => Inertia::render('Home'))->name('home');
 Route::get('/blog',    fn() => Inertia::render('Blog'))->name('blog');
 Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');
+Route::get('/about',   fn() => Inertia::render('About'))->name('about');
+
+/*
+|--------------------------------------------------------------------------
+| Sitemap XML — international SEO
+|--------------------------------------------------------------------------
+*/
+Route::get('/sitemap.xml', function () {
+    $now   = now()->toAtomString();
+    $posts = [
+        'application-web-vs-site-web',
+        'mobile-vs-web',
+        'pourquoi-choisir-le-web',
+    ];
+    $projects = ['taskflow'];
+
+    $urls = [
+        ['loc' => 'https://rosnel.dev/',          'priority' => '1.0',  'changefreq' => 'weekly'],
+        ['loc' => 'https://rosnel.dev/about',      'priority' => '0.9',  'changefreq' => 'monthly'],
+        ['loc' => 'https://rosnel.dev/blog',       'priority' => '0.8',  'changefreq' => 'weekly'],
+        ['loc' => 'https://rosnel.dev/contact',    'priority' => '0.7',  'changefreq' => 'monthly'],
+    ];
+
+    foreach ($posts as $slug) {
+        $urls[] = ['loc' => "https://rosnel.dev/blog/{$slug}", 'priority' => '0.7', 'changefreq' => 'monthly'];
+    }
+    foreach ($projects as $slug) {
+        $urls[] = ['loc' => "https://rosnel.dev/projets/{$slug}", 'priority' => '0.8', 'changefreq' => 'monthly'];
+    }
+
+    $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    foreach ($urls as $u) {
+        $xml .= "  <url>\n";
+        $xml .= "    <loc>{$u['loc']}</loc>\n";
+        $xml .= "    <lastmod>{$now}</lastmod>\n";
+        $xml .= "    <changefreq>{$u['changefreq']}</changefreq>\n";
+        $xml .= "    <priority>{$u['priority']}</priority>\n";
+        $xml .= "  </url>\n";
+    }
+    $xml .= '</urlset>';
+
+    return response($xml, 200, ['Content-Type' => 'application/xml; charset=UTF-8']);
+})->name('sitemap');
 
 /*
 |==========================================================================
@@ -369,6 +418,7 @@ Route::post('/contact', function (Request $request) {
         'message.required' => 'Le message est requis.',
         'message.min'      => 'Le message doit contenir au moins 10 caractères.',
     ]);
+
     try {
         Mail::send([], [], function ($mail) use ($data) {
             $mail->to('mrrosnel6@gmail.com', 'Rosnel Pacely')
@@ -377,8 +427,9 @@ Route::post('/contact', function (Request $request) {
                  ->html(contactHtmlBody($data));
         });
     } catch (\Exception $e) {
-        return back()->withErrors(['global' => "Erreur d'envoi. Écrivez à mrrosnel6@gmail.com"]);
+        return back()->withErrors(['global' => "Erreur d'envoi. Écrivez directement à mrrosnel6@gmail.com"]);
     }
+
     return back()->with('success', true);
 })->name('contact.send');
 
@@ -413,39 +464,83 @@ Route::get('/projets/{slug}', function (string $slug) {
             ],
         ],
     ];
+
     abort_if(! isset($projects[$slug]), 404);
+
     $others = collect($projects)->filter(fn($p) => $p['slug'] !== $slug)->values()
         ->map(fn($p) => ['slug'=>$p['slug'],'title'=>$p['title'],'tagline'=>$p['tagline'],'color'=>$p['color'],'tags'=>$p['tags']])->all();
+
     return Inertia::render('ProjectShow', ['project'=>$projects[$slug],'otherProjects'=>$others]);
 })->name('project.show');
 
 /*
 |--------------------------------------------------------------------------
-| Helper email
+| Helper email HTML — design amélioré
 |--------------------------------------------------------------------------
 */
 if (! function_exists('contactHtmlBody')) {
     function contactHtmlBody(array $data): string {
-        $n=htmlspecialchars($data['name']); $e=htmlspecialchars($data['email']);
-        $s=htmlspecialchars($data['subject']); $b=htmlspecialchars($data['budget']??'Non précisé');
-        $m=nl2br(htmlspecialchars($data['message']));
+        $n = htmlspecialchars($data['name']);
+        $e = htmlspecialchars($data['email']);
+        $s = htmlspecialchars($data['subject']);
+        $b = htmlspecialchars($data['budget'] ?? 'Non précisé');
+        $m = nl2br(htmlspecialchars($data['message']));
+        $date = now()->format('d/m/Y à H:i');
+
         return <<<HTML
-<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
-body{font-family:'Segoe UI',sans-serif;background:#0A0A0A;color:#F0F0F0;margin:0;}
-.w{max-width:580px;margin:40px auto;background:#111;border:1px solid #222;border-radius:16px;overflow:hidden;}
-.h{background:#E53E3E;padding:24px 28px;}.h h1{margin:0;font-size:1.15rem;color:#fff;font-weight:800;}
-.b{padding:24px 28px;}.r{margin-bottom:14px;}.l{font-size:.68rem;color:#666;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;font-family:monospace;}
-.v{font-size:.9rem;color:#F0F0F0;}.m{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:12px;line-height:1.7;font-size:.88rem;color:#ccc;}
-.f{border-top:1px solid #1a1a1a;padding:12px 28px;font-size:.72rem;color:#555;}a{color:#E53E3E;}
-</style></head><body><div class="w">
-<div class="h"><h1> Nouveau message · rosnel.dev</h1></div>
-<div class="b">
-<div class="r"><div class="l">Nom</div><div class="v">{$n}</div></div>
-<div class="r"><div class="l">Email</div><div class="v"><a href="mailto:{$e}">{$e}</a></div></div>
-<div class="r"><div class="l">Sujet</div><div class="v">{$s}</div></div>
-<div class="r"><div class="l">Budget</div><div class="v">{$b}</div></div>
-<div class="r"><div class="l">Message</div><div class="m">{$m}</div></div>
-</div><div class="f">Portfolio rosnel.dev</div></div></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0A0A0A; color: #F0F0F0; margin: 0; padding: 20px; }
+  .wrap { max-width: 600px; margin: 0 auto; }
+  .header { background: linear-gradient(135deg, #E53E3E, #C53030); padding: 28px 32px; border-radius: 16px 16px 0 0; }
+  .header h1 { margin: 0; font-size: 1.1rem; color: #fff; font-weight: 800; letter-spacing: -.02em; }
+  .header p { margin: 6px 0 0; font-size: .8rem; color: rgba(255,255,255,.65); }
+  .body { background: #111111; border: 1px solid #1e1e1e; border-top: none; padding: 28px 32px; border-radius: 0 0 16px 16px; }
+  .row { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid #1e1e1e; }
+  .row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .label { font-size: .65rem; color: #555; text-transform: uppercase; letter-spacing: .14em; font-family: monospace; margin-bottom: 4px; }
+  .value { font-size: .92rem; color: #F0F0F0; line-height: 1.5; }
+  .value a { color: #E53E3E; text-decoration: none; }
+  .message-box { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; padding: 16px; line-height: 1.8; font-size: .88rem; color: #ccc; }
+  .footer { margin-top: 20px; text-align: center; font-size: .72rem; color: #333; }
+  .footer a { color: #E53E3E; text-decoration: none; }
+  .badge { display: inline-block; background: rgba(229,62,62,.15); color: #E53E3E; border: 1px solid rgba(229,62,62,.3); padding: 3px 10px; border-radius: 100px; font-size: .7rem; font-weight: 700; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>📬 Nouveau message — rosnel.dev</h1>
+    <p>Reçu le {$date}</p>
+  </div>
+  <div class="body">
+    <div class="row">
+      <div class="label">Expéditeur</div>
+      <div class="value"><strong>{$n}</strong><br><a href="mailto:{$e}">{$e}</a></div>
+    </div>
+    <div class="row">
+      <div class="label">Sujet</div>
+      <div class="value">{$s}</div>
+    </div>
+    <div class="row">
+      <div class="label">Budget estimé</div>
+      <div class="value"><span class="badge">{$b}</span></div>
+    </div>
+    <div class="row">
+      <div class="label">Message</div>
+      <div class="message-box">{$m}</div>
+    </div>
+  </div>
+  <div class="footer">
+    <a href="https://rosnel.dev">rosnel.dev</a> · Portfolio de Mabong Anaba Rosnel Pacely
+  </div>
+</div>
+</body>
+</html>
 HTML;
     }
 }

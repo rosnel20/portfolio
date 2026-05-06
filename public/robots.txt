@@ -1,2 +1,13 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Bloquer les routes Laravel internes / admin
+Disallow: /storage/
+Disallow: /_ignition/
+Disallow: /horizon/
+Disallow: /telescope/
+
+# Crawl-delay pour les robots peu respectueux
+Crawl-delay: 1
+
+Sitemap: https://rosnel.dev/sitemap.xml

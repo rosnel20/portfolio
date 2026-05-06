@@ -8,7 +8,7 @@
       <!-- HERO -->
       <section class="bph">
         <div class="bph-img-wrap" v-if="post.image">
-          <img :src="post.image" :alt="post.title" class="bph-bg-img"/>
+          <img :src="post.image" :alt="post.title" class="bph-bg-img" loading="eager" decoding="async"/>
           <div class="bph-img-overlay"></div>
         </div>
         <div v-else class="bph-bg">
@@ -290,7 +290,7 @@ async function submitComment() {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
 
 .bppage.dark {
   --bg: #0A0A0A; --bg2: #111111; --footer-bg: #080808;

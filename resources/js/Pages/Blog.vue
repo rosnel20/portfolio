@@ -52,7 +52,7 @@
                   v-if="filteredPosts[0].image"
                   :src="filteredPosts[0].image"
                   :alt="filteredPosts[0].title"
-                  class="bcf-img"
+                  class="bcf-img" loading="lazy" decoding="async"
                 />
                 <div v-else class="bcf-letter" :style="{ color: filteredPosts[0].color }">{{ filteredPosts[0].title.charAt(0) }}</div>
                 <div class="bcf-overlay">
@@ -95,7 +95,7 @@
               :data-delay="idx * 80"
             >
               <div class="bcc-visual" :style="{ background: post.color+'12' }">
-                <img v-if="post.image" :src="post.image" :alt="post.title" class="bcc-img"/>
+                <img v-if="post.image" :src="post.image" :alt="post.title" class="bcc-img" loading="lazy" decoding="async"/>
                 <div v-else class="bcc-ph-letter" :style="{ color: post.color }">{{ post.title.charAt(0) }}</div>
               </div>
               <div class="bcc-body">
@@ -191,7 +191,7 @@ const filteredPosts = computed(() =>
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
 
 .bpage.dark {
   --bg: #0A0A0A; --bg2: #111111; --footer-bg: #080808;

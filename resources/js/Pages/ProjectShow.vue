@@ -81,7 +81,7 @@
                   :key="currentIndex"
                   :src="screenshots[currentIndex]"
                   :alt="`${project.title} — capture ${currentIndex + 1}`"
-                  class="phs-img"
+                  class="phs-img" loading="lazy" decoding="async"
                   @click="openLightbox(currentIndex)"
                 />
                 <div v-else-if="!screenshots.length && !heroLoading" class="phs-empty-hero" :style="{ color: project.color }">
@@ -509,7 +509,7 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); document.body.
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
 
 /* ── THÈME ── */
 .ppage.dark {

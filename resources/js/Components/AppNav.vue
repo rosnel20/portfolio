@@ -1,238 +1,246 @@
 <template>
-  <nav class="nav" :class="{ lifted: scrolled }">
-    <div class="pill">
+  <nav class="nav" :class="[dark ? 'dark' : 'light', { scrolled }]" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
 
-      <Link href="/" class="logo">rosnel<span class="dot">.</span>dev</Link>
+      <!-- Logo -->
+      <Link href="/" class="nav-logo" aria-label="Rosnel Pacely — Home">
+        <span class="logo-r">R</span>
+        <span class="logo-name">osnel<span class="logo-dot">.</span></span>
+      </Link>
 
-      <!-- Desktop links — toujours les mêmes 4 liens -->
-      <ul class="links">
-        <li v-for="l in links" :key="l.id">
-          <!-- Ancre (sur Home uniquement) -->
-          <a
-            v-if="l.anchor && onHome"
-            class="lnk" :class="{ active: active === l.id }"
-            :href="'#' + l.id"
-            @click.prevent="go(l.id)"
-          >{{ l.label }}</a>
-          <!-- Lien normal (toutes les autres pages) -->
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        <li v-for="item in links" :key="item.href">
           <Link
-            v-else
-            class="lnk" :class="{ active: isActive(l) }"
-            :href="l.href"
-          >{{ l.label }}</Link>
+            :href="item.href"
+            class="nav-link"
+            :class="{ active: isActive(item.href) }"
+          >{{ item.label }}</Link>
         </li>
       </ul>
 
-      <div class="end">
-        <!-- Toggle thème -->
-        <button class="icon-btn" @click="$emit('toggle-theme')" :title="dark ? 'Mode clair' : 'Mode sombre'">
-          <svg v-if="dark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <!-- Actions -->
+      <div class="nav-actions">
+        <!-- Theme toggle -->
+        <button
+          class="nav-theme"
+          :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+          @click="$emit('toggle-theme')"
+        >
+          <svg v-if="dark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"  x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
           </svg>
-          <svg v-else width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
 
-        <!-- CTA Contact (masqué si déjà sur /contact) -->
-        <Link v-if="!onContact" class="cta" href="/contact">Contact</Link>
+        <!-- CTA -->
+        <Link href="/contact" class="nav-cta">
+          Hire me
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </Link>
 
-        <button class="burger" :class="{ x: menu }" @click="menu = !menu" aria-label="Menu">
-          <span></span><span></span>
+        <!-- Burger mobile -->
+        <button
+          class="nav-burger"
+          :class="{ open: menuOpen }"
+          :aria-expanded="menuOpen.toString()"
+          aria-label="Toggle menu"
+          @click="menuOpen = !menuOpen"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </div>
 
-    <!-- Menu mobile -->
-    <Transition name="mob">
-      <div v-if="menu" class="mobile">
-        <template v-for="(l, idx) in links" :key="l.id">
-          <a
-            v-if="l.anchor && onHome"
-            class="mob-lnk"
-            :href="'#' + l.id"
-            @click.prevent="go(l.id); menu = false"
-          >
-            <span class="mob-n">{{ String(idx + 1).padStart(2, '0') }}</span>
-            {{ l.label }}
-          </a>
-          <Link v-else :href="l.href" class="mob-lnk" @click="menu = false">
-            <span class="mob-n">{{ String(idx + 1).padStart(2, '0') }}</span>
-            {{ l.label }}
-          </Link>
-        </template>
-
-        <!-- Contact mobile -->
-        <Link v-if="!onContact" href="/contact" class="mob-contact" @click="menu = false">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          Contact
+    <!-- Mobile menu -->
+    <Transition name="menu">
+      <div v-if="menuOpen" class="nav-mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <ul role="list">
+          <li v-for="item in links" :key="item.href">
+            <Link
+              :href="item.href"
+              class="nm-link"
+              :class="{ active: isActive(item.href) }"
+              @click="menuOpen = false"
+            >
+              {{ item.label }}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </Link>
+          </li>
+        </ul>
+        <Link href="/contact" class="nm-cta" @click="menuOpen = false">
+          Hire me →
         </Link>
+        <div class="nm-locale">
+          <span>🇫🇷 FR</span>
+          <span class="nm-sep">·</span>
+          <span>🇬🇧 EN</span>
+        </div>
       </div>
     </Transition>
   </nav>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { Link, usePage } from '@inertiajs/vue3'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { Link } from '@inertiajs/vue3'
 
 defineProps({ dark: Boolean })
 defineEmits(['toggle-theme'])
 
-const page     = usePage()
-const scrolled = ref(false)
-const active   = ref('hero')  // section active sur Home (scroll spy)
-const menu     = ref(false)
+const menuOpen    = ref(false)
+const scrolled    = ref(false)
+const currentPath = ref('/')
 
-const currentUrl = computed(() => page.url ?? window.location.pathname)
-const onHome     = computed(() => currentUrl.value === '/' || currentUrl.value === '' || currentUrl.value.startsWith('/#'))
-const onContact  = computed(() => currentUrl.value.startsWith('/contact'))
-
-/* ── Les 4 liens toujours présents ── */
 const links = [
-  { label: 'Accueil',  id: 'hero',     anchor: true,  href: '/'        },
-  { label: 'À propos', id: 'about',    anchor: true,  href: '/#about'  },
-  { label: 'Projets',  id: 'projects', anchor: true,  href: '/#projects' },
-  { label: 'Blog',     id: 'blog',     anchor: false, href: '/blog'    },
+  { href: '/',        label: 'Home' },
+  { href: '/about',   label: 'About' },
+  { href: '/blog',    label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
 ]
 
-/* Détermine si un lien est actif selon la page courante */
-function isActive(l) {
-  const u = currentUrl.value
-  // Sur Home : géré par le scroll spy (active ref)
-  if (onHome.value && l.anchor) return active.value === l.id
-  // Blog
-  if (l.id === 'blog') return u.startsWith('/blog')
-  // Accueil quand on n'est pas sur Home
-  if (l.id === 'hero') return onHome.value
-  // Projets : /projets/*
-  if (l.id === 'projects') return u.startsWith('/projets')
-  return false
+function isActive(href) {
+  if (href === '/') return currentPath.value === '/'
+  return currentPath.value.startsWith(href)
 }
 
-function go(id) {
-  const el = document.getElementById(id)
-  if (el) {
-    window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' })
-  } else {
-    window.location.href = '/#' + id
-  }
-}
+function onScroll() { scrolled.value = window.scrollY > 40 }
 
-function onScroll() {
-  scrolled.value = window.scrollY > 50
-  if (!onHome.value) return
-  // Scroll spy : détecte la section visible
-  for (const id of ['contact', 'projects', 'about', 'hero']) {
-    const el = document.getElementById(id)
-    if (el && window.scrollY >= el.offsetTop - 130) {
-      active.value = id; break
-    }
-  }
-}
-
-onMounted(() => { window.addEventListener('scroll', onScroll, { passive: true }); onScroll() })
+onMounted(() => {
+  currentPath.value = window.location.pathname
+  window.addEventListener('scroll', onScroll, { passive: true })
+})
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <style scoped>
 .nav {
-  position: fixed; top: .85rem; left: 50%;
-  transform: translateX(-50%);
-  z-index: 400;
-  width: min(calc(100vw - 2rem), 960px);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  font-family: 'Outfit', sans-serif;
+  transition: background .3s, border-color .3s, backdrop-filter .3s;
+  border-bottom: 1px solid transparent;
 }
-.pill {
+.nav.dark  { --bg: rgba(12,12,12,.0);  --text: #F0F0F0; --muted: #555; --card: rgba(255,255,255,.04); --card-b: rgba(255,255,255,.08); --red: #E53E3E; --mob-bg: #0E0E0E; }
+.nav.light { --bg: rgba(248,248,248,.0); --text: #0A0A0A; --muted: #999; --card: rgba(0,0,0,.04); --card-b: rgba(0,0,0,.09); --red: #C53030; --mob-bg: #F5F5F5; }
+
+.nav.scrolled {
+  background: var(--bg);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom-color: var(--card-b);
+}
+.nav.dark.scrolled  { --bg: rgba(10,10,10,.88); }
+.nav.light.scrolled { --bg: rgba(248,248,248,.92); }
+
+.nav-inner {
   display: flex; align-items: center; justify-content: space-between;
-  gap: .5rem; padding: .68rem .9rem .68rem 1.4rem;
-  background: var(--nav-bg); border: 1px solid var(--nav-b);
-  border-radius: 100px;
-  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-  transition: box-shadow .35s, border-color .35s;
-}
-.nav.lifted .pill { box-shadow: 0 8px 40px rgba(0,0,0,.32); border-color: rgba(229,62,62,.22); }
-.logo { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1rem; color: var(--text); text-decoration: none; letter-spacing: -.04em; flex-shrink: 0; }
-.dot  { color: var(--red); }
-
-.links { display: flex; list-style: none; margin: 0; padding: 0; gap: 0; }
-.lnk {
-  display: block; color: var(--muted); text-decoration: none;
-  font-size: .82rem; font-weight: 500;
-  padding: .34rem .7rem; border-radius: 100px;
-  transition: color .18s, background .18s;
-  position: relative; cursor: pointer;
-}
-.lnk:hover { color: var(--text); background: rgba(255,255,255,.06); }
-.lnk.active { color: var(--text); }
-.lnk.active::after {
-  content: ''; position: absolute; bottom: 2px; left: 50%;
-  transform: translateX(-50%);
-  width: 4px; height: 4px; border-radius: 50%; background: var(--red);
+  max-width: 1200px; margin: 0 auto;
+  padding: .9rem 5vw;
+  gap: 1rem;
 }
 
-.end { display: flex; align-items: center; gap: .4rem; }
-.icon-btn {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: rgba(255,255,255,.06); border: 1px solid var(--nav-b);
-  color: var(--muted); cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: color .2s, border-color .2s;
+.nav-logo {
+  display: flex; align-items: baseline;
+  text-decoration: none; font-weight: 900; font-size: 1.1rem;
+  letter-spacing: -.04em; color: var(--text); flex-shrink: 0;
 }
-.icon-btn:hover { color: var(--text); border-color: var(--red); }
-.cta {
-  padding: .38rem 1.1rem; border-radius: 100px;
-  background: var(--red); color: #fff; text-decoration: none;
-  font-size: .8rem; font-weight: 700; white-space: nowrap;
-  display: inline-flex; align-items: center;
+.logo-r, .logo-dot { color: var(--red); }
+
+.nav-links {
+  display: flex; align-items: center; gap: .2rem;
+  list-style: none; margin: 0; padding: 0;
+}
+.nav-link {
+  font-size: .84rem; font-weight: 500; color: var(--muted);
+  text-decoration: none; padding: .4rem .75rem; border-radius: 8px;
+  transition: color .2s, background .2s; white-space: nowrap;
+}
+.nav-link:hover { color: var(--text); background: var(--card); }
+.nav-link.active { color: var(--red); background: var(--card); }
+
+.nav-actions { display: flex; align-items: center; gap: .6rem; }
+
+.nav-theme {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: var(--card); border: 1px solid var(--card-b);
+  color: var(--text); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s, border-color .2s; flex-shrink: 0;
+}
+.nav-theme:hover { border-color: var(--red); background: rgba(229,62,62,.08); }
+
+.nav-cta {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: var(--red); color: #fff;
+  padding: .48rem 1.05rem; border-radius: 8px;
+  font-size: .82rem; font-weight: 700; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(229,62,62,.22);
   transition: opacity .2s, transform .2s;
 }
-.cta:hover { opacity: .85; transform: translateY(-1px); }
+.nav-cta:hover { opacity: .88; transform: translateY(-1px); }
 
-.burger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer;
-  width: 32px; height: 32px; align-items: center; justify-content: center;
+.nav-burger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 36px; height: 36px; padding: 6px;
+  background: var(--card); border: 1px solid var(--card-b);
+  border-radius: 9px; cursor: pointer;
 }
-.burger span { display: block; width: 16px; height: 1.5px; background: var(--text); border-radius: 2px; transition: all .28s; }
-.burger.x span:first-child { transform: translateY(3.3px) rotate(45deg); }
-.burger.x span:last-child  { transform: translateY(-3.3px) rotate(-45deg); }
+.nav-burger span {
+  display: block; height: 1.5px; background: var(--text);
+  border-radius: 2px; transition: transform .3s, opacity .3s;
+  transform-origin: center;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-.mobile {
-  margin-top: .55rem;
-  background: var(--nav-bg); border: 1px solid var(--nav-b);
-  border-radius: 20px; padding: .7rem .9rem 1rem;
-  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+.nav-mobile {
+  background: var(--mob-bg);
+  border-top: 1px solid var(--card-b);
+  padding: 1rem 5vw 1.4rem;
 }
-.mob-lnk {
-  display: flex; align-items: center; gap: .75rem;
-  color: var(--text); text-decoration: none; font-size: .9rem; font-weight: 600;
-  padding: .7rem .7rem; border-radius: 10px; transition: background .18s; cursor: pointer;
+.nav-mobile ul { list-style: none; padding: 0; margin: 0 0 1rem; }
+.nm-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .72rem .4rem; color: var(--muted); text-decoration: none;
+  font-size: .92rem; font-weight: 500;
+  border-bottom: 1px solid var(--card-b); transition: color .2s;
 }
-.mob-lnk:hover { background: rgba(255,255,255,.05); }
-.mob-n { font-size: .65rem; color: var(--red); letter-spacing: .1em; min-width: 1.5rem; }
-.mob-contact {
-  display: flex; align-items: center; gap: .55rem;
-  padding: .75rem .7rem; font-size: .85rem; font-weight: 700;
-  color: var(--red); text-decoration: none;
-  border-top: 1px solid var(--nav-b); margin-top: .5rem;
-  border-radius: 10px; transition: background .18s;
+.nm-link:hover, .nm-link.active { color: var(--text); }
+.nm-link.active { color: var(--red); }
+.nm-cta {
+  display: block; text-align: center; background: var(--red); color: #fff;
+  padding: .82rem; border-radius: 10px; font-weight: 700; font-size: .9rem;
+  text-decoration: none; margin-bottom: .9rem;
 }
-.mob-contact:hover { background: var(--red-soft); }
+.nm-locale { display: flex; align-items: center; justify-content: center; gap: .5rem; font-size: .75rem; color: var(--muted); }
+.nm-sep { opacity: .4; }
 
-.mob-enter-active, .mob-leave-active { transition: opacity .22s, transform .22s; }
-.mob-enter-from { opacity: 0; transform: translateY(-8px); }
-.mob-leave-to   { opacity: 0; transform: translateY(-8px); }
+.menu-enter-active, .menu-leave-active { transition: opacity .22s, transform .22s; }
+.menu-enter-from, .menu-leave-to { opacity: 0; transform: translateY(-8px); }
 
-@media (max-width: 720px) {
-  .links { display: none; }
-  .cta   { display: none; }
-  .burger { display: flex; }
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+}
+@media (max-width: 400px) {
+  .nav-inner { padding: .8rem 4vw; }
 }
 </style>
